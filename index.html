@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEWAYS Grand Restaurant & Lounge | Oliy Toifali Gastronomiya</title>
+    <meta name="description" content="DEWAYS - Toshkentdagi eng hashamatli milliy va Yevropa taomlari restorani. Josper pechi, mramor steyklar, to'y oshi va jonli lounge musiqa.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0b0d11] text-slate-100 antialiased selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden">
+    <!-- Interactive Mouse Spotlight -->
+    <div class="mouse-spotlight"></div>
+
+    <!-- Celebration Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- TOP PROMO BANNER -->
+    <aside aria-label="Aksiya e'loni" class="bg-gradient-to-r from-amber-950/80 via-black to-amber-950/80 border-b border-amber-500/20 text-xs py-2 px-4 text-center">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-slate-300">
+            <div class="flex items-center gap-2 mx-auto sm:mx-0">
+                <span class="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-bold uppercase text-[10px] tracking-wider border border-amber-500/30">Maxsus taklif</span>
+                <span>Birinchi onlayn buyurtmangiz uchun <strong class="text-amber-400 font-mono">DEWAYS10</strong> promo-kodi orqali 10% chegirma oling!</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-xs text-slate-400">
+                <span><i class="fa-regular fa-clock text-amber-400 mr-1.5"></i> Har kuni: 10:00 - 23:30</span>
+                <a href="tel:+998930971880" class="hover:text-amber-400 transition-colors"><i class="fa-solid fa-phone text-amber-400 mr-1.5"></i> +998 93 097 18 80</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- LIVE LUXURY MARQUEE TICKER -->
+    <div class="overflow-hidden bg-[#0d1017] border-b border-white/5 py-1.5 text-[11px] font-medium text-slate-400 select-none">
+        <div class="ticker-track flex items-center gap-10 whitespace-nowrap">
+            <span class="flex items-center gap-2 text-amber-300"><i class="fa-solid fa-crown text-amber-400"></i> Michelin darajasidagi oshpazlik falsafasi</span>
+            <span class="flex items-center gap-2 text-slate-300"><i class="fa-solid fa-fire text-amber-500"></i> O'tin Josper pechida pishirilgan mramor steyklar</span>
+            <span class="flex items-center gap-2 text-emerald-300"><i class="fa-solid fa-shield-halved text-emerald-400"></i> 100% Sertifikatlangan Halol go'sht</span>
+            <span class="flex items-center gap-2 text-amber-300"><i class="fa-solid fa-music text-amber-400"></i> Har oqshom 19:30 da royal va jonli lounge musiqa</span>
+            <span class="flex items-center gap-2 text-slate-300"><i class="fa-solid fa-motorcycle text-amber-400"></i> 35 daqiqada maxsus termo-boksda issiq yetkazish (Josper 75°C)</span>
+            <span class="flex items-center gap-2 text-amber-300"><i class="fa-solid fa-crown text-amber-400"></i> Michelin darajasidagi oshpazlik falsafasi</span>
+            <span class="flex items-center gap-2 text-slate-300"><i class="fa-solid fa-fire text-amber-500"></i> O'tin Josper pechida pishirilgan mramor steyklar</span>
+            <span class="flex items-center gap-2 text-emerald-300"><i class="fa-solid fa-shield-halved text-emerald-400"></i> 100% Sertifikatlangan Halol go'sht</span>
+            <span class="flex items-center gap-2 text-amber-300"><i class="fa-solid fa-music text-amber-400"></i> Har oqshom 19:30 da royal va jonli lounge musiqa</span>
+            <span class="flex items-center gap-2 text-slate-300"><i class="fa-solid fa-motorcycle text-amber-400"></i> 35 daqiqada maxsus termo-boksda issiq yetkazish (Josper 75°C)</span>
+        </div>
+    </div>
+
+    <!-- STICKY NAVBAR -->
+    <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 lg:gap-4">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-700 flex items-center justify-center text-black font-black text-lg sm:text-xl shadow-lg shadow-amber-500/30 group-hover:scale-105 transition-transform duration-300">
+                    D
+                </div>
+                <div>
+                    <span class="font-serif-luxury text-xl sm:text-2xl font-bold tracking-wider text-gold-gradient block leading-none">DEWAYS</span>
+                    <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-slate-400 font-semibold">Grand Restaurant</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden xl:flex items-center gap-4 2xl:gap-6 text-sm font-medium text-slate-300">
+                <a href="#home" class="hover:text-amber-400 transition-colors whitespace-nowrap">Bosh sahifa</a>
+                <a href="#menu" class="hover:text-amber-400 transition-colors whitespace-nowrap">Menyu & Taomlar</a>
+                <a href="#about" class="hover:text-amber-400 transition-colors whitespace-nowrap">Biz haqimizda</a>
+                <a href="#chefs" class="hover:text-amber-400 transition-colors whitespace-nowrap">Oshpazlar</a>
+                <a href="#reviews" class="hover:text-amber-400 transition-colors whitespace-nowrap">Sharhlar</a>
+                <a href="#contact" class="hover:text-amber-400 transition-colors whitespace-nowrap">Manzil</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
+                <!-- Admin Panel Button -->
+                <button onclick="openAdminModal()" class="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-black font-extrabold text-xs flex items-center gap-2 shadow-md shadow-amber-500/25 hover:scale-105 active:scale-95 transition-all cursor-pointer whitespace-nowrap tracking-wide" title="Admin Panel">
+                    <i class="fa-solid fa-shield-halved text-xs sm:text-sm"></i>
+                    <span>ADMIN PANEL</span>
+                </button>
+
+                <!-- Cart Button -->
+                <button id="navbar-cart-btn" onclick="toggleCartDrawer()" class="relative px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 hover:border-amber-400/50 text-slate-100 transition-all flex items-center gap-2 whitespace-nowrap font-bold text-xs cursor-pointer shadow-sm">
+                    <i class="fa-solid fa-bag-shopping text-amber-400 text-xs sm:text-sm"></i>
+                    <span>Savat</span>
+                    <span class="cart-count-badge hidden absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-amber-500 text-black text-[10px] font-extrabold flex items-center justify-center shadow-md shadow-amber-500/50">0</span>
+                </button>
+
+                <!-- Reserve Table CTA -->
+                <a href="#reservation" class="btn-gold flex items-center gap-2 px-4 sm:px-4.5 py-2 sm:py-2.5 rounded-xl text-xs uppercase tracking-wider font-extrabold whitespace-nowrap shadow-md shadow-amber-500/25 cursor-pointer hover:scale-105 active:scale-95 transition-all shrink-0">
+                    <i class="fa-solid fa-calendar-check text-xs sm:text-sm"></i>
+                    <span>STOL BAND QILISH</span>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileNav()" class="xl:hidden p-2 rounded-xl bg-white/5 border border-white/10 text-slate-200 hover:text-amber-400 transition-colors ml-0.5">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu (Hidden by default) -->
+        <div id="mobile-nav" class="hidden xl:hidden border-t border-white/10 bg-[#0b0d11]/98 px-6 py-4 space-y-3">
+            <a href="#home" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Bosh sahifa</a>
+            <a href="#menu" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Menyu & Taomlar</a>
+            <a href="#reservation" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Stol band qilish</a>
+            <a href="#about" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Biz haqimizda</a>
+            <a href="#chefs" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Oshpazlar</a>
+            <a href="#reviews" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Mijozlar fikrlari</a>
+            <a href="#contact" onclick="toggleMobileNav()" class="block text-sm py-2 px-3 rounded-lg hover:bg-white/5 text-slate-200 font-medium">Manzil va Aloqa</a>
+            <button onclick="openAdminModal(); toggleMobileNav();" class="w-full text-left text-sm py-2.5 px-3 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 font-bold flex items-center gap-2.5 shadow-md shadow-amber-500/10">
+                <i class="fa-solid fa-shield-halved text-amber-400"></i>
+                <span>👑 Admin Boshqaruv Paneli</span>
+            </button>
+            <div class="pt-3 border-t border-white/10">
+                <a href="#reservation" onclick="toggleMobileNav()" class="btn-gold w-full py-3 rounded-xl text-center font-bold text-xs uppercase block">
+                    Stol band qilish
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative min-h-[92vh] flex items-center justify-center overflow-hidden py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
+        <!-- Interactive Golden Particles Canvas -->
+        <canvas id="hero-particles-canvas"></canvas>
+
+        <!-- Hero Ambient Glow & Texture -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#0b0d11]/80 to-[#0b0d11] z-10 pointer-events-none"></div>
+        <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+        <div class="relative z-20 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            <!-- Left Text Content -->
+            <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                <!-- Floating Micro-Tag -->
+                <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-amber-500/30 backdrop-blur-md text-xs text-amber-300 font-medium shadow-lg">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Michelin Standartlari &bull; Toshkent</span>
+                    <span class="text-white/30">|</span>
+                    <span class="text-slate-300">⚡ 35 daqiqada issiq yetkazish</span>
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.15] tracking-tight">
+                    Haqiqiy Lazzat va <br>
+                    <span class="text-gold-gradient">Shohona Nafosat</span> <br>
+                    Uyg'unligi.
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                    Asriy o'zbek mehmondo'stligi, Ispaniya Josper pechida pishirilgan barra go'shtlar va Yevropaning eng sarxil desertlari sizni kutmoqda.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#menu" class="btn-gold px-8 py-4 rounded-xl text-sm uppercase tracking-wider font-bold flex items-center gap-3">
+                        <i class="fa-solid fa-utensils"></i>
+                        <span>Menyuni kashf eting</span>
+                    </a>
+                    <a href="#reservation" class="btn-outline-gold px-7 py-4 rounded-xl text-sm uppercase tracking-wider font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-chair"></i>
+                        <span>Stol bron qilish</span>
+                    </a>
+                    <button onclick="openVideoModal()" class="px-6 py-4 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 text-sm uppercase tracking-wider font-bold flex items-center gap-2.5 shadow-lg shadow-amber-500/10 transition-all hover:scale-105 cursor-pointer">
+                        <i class="fa-solid fa-circle-play text-amber-400 text-lg animate-pulse"></i>
+                        <span>Videoni ko'rish</span>
+                    </button>
+                </div>
+
+                <!-- Key Metrics / Counters -->
+                <div class="grid grid-cols-3 gap-4 pt-8 border-t border-white/10 max-w-lg mx-auto lg:mx-0 text-left">
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-black text-white font-serif-luxury counter-glow" data-counter="120">0+</div>
+                        <div class="text-[11px] sm:text-xs text-slate-400 mt-1">Mamnun mehmonlar</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-black text-amber-400 font-serif-luxury counter-glow" data-counter="4.9">0</div>
+                        <div class="text-[11px] sm:text-xs text-slate-400 mt-1">Oliy baho (Google/Yandex)</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-black text-white font-serif-luxury counter-glow" data-counter="15">0+</div>
+                        <div class="text-[11px] sm:text-xs text-slate-400 mt-1">Yillik mukammal tajriba</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Visual 3D Showcase Card (Cinematic Video Showcase) -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <!-- Glowing Aura behind card -->
+                <div class="absolute -inset-4 bg-gradient-to-r from-amber-500/30 via-amber-600/20 to-transparent rounded-3xl blur-2xl"></div>
+
+                <div class="relative glass-card rounded-3xl p-5 sm:p-6 max-w-sm sm:max-w-md w-full border border-amber-500/40 shadow-2xl">
+                    <!-- Video Frame -->
+                    <div class="relative h-64 sm:h-72 rounded-2xl overflow-hidden mb-4 group shadow-2xl border border-amber-500/30 bg-black">
+                        <video id="hero-showcase-video" autoplay loop muted playsinline preload="auto" poster="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover">
+                            <source src="deways-intro.mp4" type="video/mp4">
+                            <source src="./deways-intro.mp4" type="video/mp4">
+                            <source src="file:///C:/Users/normi/.gemini/antigravity/brain/f0ed627f-48fc-474a-a5cb-20c2067a883f/.user_uploaded/media_1793349934035_46fed3f4.mp4" type="video/mp4">
+                            <source src="C:/Users/normi/.gemini/antigravity/brain/f0ed627f-48fc-474a-a5cb-20c2067a883f/.user_uploaded/media_1793349934035_46fed3f4.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
+
+                        <!-- Top Floating Badges -->
+                        <div class="absolute top-3 left-3 flex items-center gap-1.5 pointer-events-none">
+                            <span class="bg-gradient-to-r from-amber-500 to-amber-600 text-black text-[11px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+                                <span>DEWAYS LIVE</span>
+                            </span>
+                            <span class="bg-black/70 backdrop-blur-md text-emerald-400 border border-emerald-500/30 text-[10px] font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-circle-check"></i> Halol
+                            </span>
+                        </div>
+
+                        <!-- Video Quick Controls (Sound & Expand) -->
+                        <div class="absolute top-3 right-3 flex items-center gap-2">
+                            <button id="hero-sound-btn" onclick="toggleHeroVideoSound()" class="w-8 h-8 rounded-full bg-black/75 hover:bg-amber-500 hover:text-black backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-lg" title="Ovozni yoqish / o'chirish">
+                                <i class="fa-solid fa-volume-xmark text-xs text-slate-300"></i>
+                            </button>
+                            <button onclick="openVideoModal()" class="w-8 h-8 rounded-full bg-black/75 hover:bg-amber-500 hover:text-black backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-lg" title="Katta ekranda tomosha qilish">
+                                <i class="fa-solid fa-expand text-xs"></i>
+                            </button>
+                        </div>
+
+                        <!-- Bottom Tag -->
+                        <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-slate-200 pointer-events-none">
+                            <span class="bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 font-mono text-[11px] text-amber-300">
+                                <i class="fa-solid fa-fire text-amber-400 mr-1"></i> Josper 350°C & Royal Lounge
+                            </span>
+                            <span class="bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 font-mono text-[10px] text-emerald-400 font-bold">
+                                4K Ultra HD
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Video Description & CTA -->
+                    <div class="space-y-3">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="font-serif-luxury text-lg sm:text-xl font-bold text-white">DEWAYS Grand Restaurant & Josper</h3>
+                                <p class="text-xs text-slate-300 mt-1 leading-relaxed">Shohona interyer, jonli royal musiqasi va Josper o'tin pechida pishirilgan betakror steyklar.</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-3">
+                            <button onclick="openVideoModal()" class="btn-outline-gold flex-1 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-play text-amber-400"></i>
+                                <span>Videoni ko'rish</span>
+                            </button>
+                            <a href="#reservation" class="btn-gold flex-1 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 text-center cursor-pointer">
+                                <i class="fa-solid fa-calendar-check"></i>
+                                <span>Stol band qilish</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Bottom feature pill -->
+                    <div class="mt-3 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-400 font-medium">
+                        <span><i class="fa-solid fa-clock text-amber-400 mr-1"></i> 30-40 daqiqa yetkazish</span>
+                        <span class="text-emerald-400"><i class="fa-solid fa-fire mr-1"></i> 75°C Termo-sumka</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DISHES & MENU SECTION -->
+    <section id="menu" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+            <span class="text-xs font-bold uppercase tracking-[0.2em] text-amber-400 block mb-2">Eksklyuziv Gastronomiya</span>
+            <h2 class="font-serif-luxury text-3xl sm:text-4xl lg:text-5xl font-bold text-white">Restoran Menyu Taomlari</h2>
+            <p class="text-sm text-slate-400 mt-3 leading-relaxed">
+                Har bir taom sara masalliqlar, halol go'sht va yuqori toifali oshpazlarimizning mehr-muhabbati bilan tayyorlanadi.
+            </p>
+        </div>
+
+        <!-- Search & Sort Controls -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+            <div class="relative w-full sm:w-80">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                <input type="text" id="search-input" placeholder="Taom yoki masalliq nomini qidiring..." class="w-full pl-11 pr-4 py-3 bg-white/5 border border-white/10 rounded-2xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition-colors">
+            </div>
+
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+                <label for="sort-select" class="text-xs text-slate-400 whitespace-nowrap">Saralash:</label>
+                <select id="sort-select" class="px-4 py-3 bg-[#131720] border border-white/10 rounded-2xl text-xs text-slate-200 focus:outline-none focus:border-amber-400 transition-colors">
+                    <option value="default">Odatiy tartibda</option>
+                    <option value="price-asc">Narxi: Arzondan qimmatga</option>
+                    <option value="price-desc">Narxi: Qimmatdan arzonga</option>
+                    <option value="rating">Reyting: Eng yuqori baholanganlar</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div id="categories-container" class="flex items-center gap-2.5 overflow-x-auto pb-4 mb-10 no-scrollbar">
+            <!-- Populated dynamically by app.js -->
+        </div>
+
+        <!-- Dishes Grid -->
+        <div id="dishes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- Populated dynamically by app.js -->
+        </div>
+
+        <!-- Empty State (Hidden by default) -->
+        <div id="dishes-empty" class="hidden text-center py-20">
+            <div class="w-20 h-20 rounded-full bg-white/5 text-slate-500 flex items-center justify-center text-3xl mx-auto mb-4">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+            <h4 class="text-lg font-bold text-white">Hech qanday taom topilmadi</h4>
+            <p class="text-xs text-slate-400 mt-1">Iltimos boshqa kalit so'z bilan qidirib ko'ring yoki barcha kategoriyalarni tanlang.</p>
+        </div>
+    </section>
+
+    <!-- RESERVATION & TABLE SELECTION SECTION -->
+    <section id="reservation" class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0b0d11] via-[#0e1219] to-[#0b0d11] border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-[0.2em] text-amber-400 block mb-2">Onlayn Joy Band Qilish</span>
+                <h2 class="font-serif-luxury text-3xl sm:text-4xl lg:text-5xl font-bold text-white">Shaxsiy Stolingizni Bron Qiling</h2>
+                <p class="text-sm text-slate-400 mt-3 leading-relaxed">
+                    Kechki ovqat, oilaviy tadbir yoki ishbilarmonlik uchrashuvlari uchun qulay hudud va stolni xaritadan tanlang.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Interactive Floor Plan Map (Left Col) -->
+                <div class="lg:col-span-5 glass-card p-6 rounded-3xl border border-white/10 space-y-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                        <div class="flex items-center gap-2 text-xs font-bold text-white uppercase tracking-wider">
+                            <i class="fa-solid fa-map-location-dot text-amber-400 text-sm"></i>
+                            <span>Restoran Sxemasi</span>
+                        </div>
+                        <span id="selected-table-badge" class="hidden text-[11px] bg-amber-500/20 text-amber-300 px-2.5 py-0.5 rounded-full border border-amber-500/30 font-bold">
+                            Tanlandi: <strong id="selected-table-name">Stol 01</strong>
+                        </span>
+                    </div>
+
+                    <!-- Visual Table Grid -->
+                    <div class="space-y-3 pt-2">
+                        <div class="text-[11px] font-semibold text-slate-400 flex items-center justify-between">
+                            <span>Asosiy Zal (Royal & Musiqa yonida)</span>
+                            <span class="text-emerald-400 text-[10px]"><i class="fa-solid fa-circle-check"></i> Bo'sh joylar bor</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2.5">
+                            <div onclick="selectTableNode('Stol №01', '2-4 kishi', 'Asosiy zal', this)" class="table-node p-3 rounded-xl bg-white/5 border border-white/10 text-center cursor-pointer">
+                                <div class="text-xs font-bold text-white">Stol 01</div>
+                                <div class="text-[10px] text-slate-400">2-4 kishi</div>
+                            </div>
+                            <div onclick="selectTableNode('Stol №02', '2-4 kishi', 'Asosiy zal', this)" class="table-node is-selected p-3 rounded-xl bg-white/5 border border-white/10 text-center cursor-pointer">
+                                <div class="text-xs font-bold text-white">Stol 02</div>
+                                <div class="text-[10px] text-slate-400">2-4 kishi</div>
+                            </div>
+                            <div class="table-node is-occupied p-3 rounded-xl bg-white/5 border border-white/5 text-center cursor-not-allowed">
+                                <div class="text-xs font-bold text-slate-500">Stol 03</div>
+                                <div class="text-[10px] text-rose-400">Band</div>
+                            </div>
+                        </div>
+
+                        <div class="text-[11px] font-semibold text-slate-400 pt-3 flex items-center justify-between">
+                            <span>Yozgi Terasa (Fontan va toza havo)</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2.5">
+                            <div onclick="selectTableNode('Terasa №01', '4-6 kishi', 'Yozgi veranda', this)" class="table-node p-3 rounded-xl bg-white/5 border border-white/10 text-center cursor-pointer">
+                                <div class="text-xs font-bold text-white">Terasa 01</div>
+                                <div class="text-[10px] text-slate-400">4-6 kishi</div>
+                            </div>
+                            <div onclick="selectTableNode('Terasa №02', '2-4 kishi', 'Yozgi veranda', this)" class="table-node p-3 rounded-xl bg-white/5 border border-white/10 text-center cursor-pointer">
+                                <div class="text-xs font-bold text-white">Terasa 02</div>
+                                <div class="text-[10px] text-slate-400">2-4 kishi</div>
+                            </div>
+                            <div class="table-node is-occupied p-3 rounded-xl bg-white/5 border border-white/5 text-center cursor-not-allowed">
+                                <div class="text-xs font-bold text-slate-500">Terasa 03</div>
+                                <div class="text-[10px] text-rose-400">Band</div>
+                            </div>
+                        </div>
+
+                        <div class="text-[11px] font-semibold text-slate-400 pt-3 flex items-center justify-between">
+                            <span>VIP Kabinalar (Shaxsiy xizmat & Karaoke)</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <div onclick="selectTableNode('VIP Grand', '8-12 kishi', 'VIP xona', this)" class="table-node p-3.5 rounded-xl bg-white/5 border border-white/10 text-center cursor-pointer">
+                                <div class="text-xs font-bold text-amber-300"><i class="fa-solid fa-crown text-amber-400 mr-1"></i> VIP Grand</div>
+                                <div class="text-[10px] text-slate-400">8-12 kishi</div>
+                            </div>
+                            <div onclick="selectTableNode('VIP Royal', '6-10 kishi', 'VIP xona', this)" class="table-node p-3.5 rounded-xl bg-white/5 border border-white/10 text-center cursor-pointer">
+                                <div class="text-xs font-bold text-amber-300"><i class="fa-solid fa-crown text-amber-400 mr-1"></i> VIP Royal</div>
+                                <div class="text-[10px] text-slate-400">6-10 kishi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking Form (Right Col) -->
+                <div class="lg:col-span-7 bg-[#10141d] p-6 sm:p-8 rounded-3xl border border-white/10 shadow-2xl">
+                    <form id="booking-form" class="space-y-4" novalidate>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Ismingiz *</label>
+                                <input type="text" id="reserve-name" required placeholder="Masalan: Sardor Aliyev" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-amber-400">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Telefon raqamingiz *</label>
+                                <div class="relative">
+                                    <input type="tel" id="reserve-phone" required placeholder="+998 93 097 18 80" autocomplete="tel" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-amber-400 transition-all duration-200">
+                                </div>
+                                <div id="reserve-phone-error" class="text-xs text-rose-400 mt-1.5 font-medium hidden flex items-center gap-1.5"></div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Mehmonlar soni</label>
+                                <select id="reserve-guests" class="w-full px-4 py-3 bg-[#151a24] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-amber-400">
+                                    <option value="1-2">1 - 2 kishi (Juftlik)</option>
+                                    <option value="3-4" selected>3 - 4 kishi (Oila)</option>
+                                    <option value="5-8">5 - 8 kishi (Katta davra)</option>
+                                    <option value="8+ (VIP)">8+ kishi (VIP xona)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Tashrif sanasi *</label>
+                                <input type="date" id="reserve-date" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-amber-400">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Vaqt *</label>
+                                <select id="reserve-time" required class="w-full px-4 py-3 bg-[#151a24] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-amber-400">
+                                    <option value="12:00">12:00 (Tushlik)</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="18:00">18:00 (Kechki ovqat)</option>
+                                    <option value="19:30" selected>19:30 (Jonli musiqa)</option>
+                                    <option value="21:00">21:00</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Zone Selection -->
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2">Restoran hududini tanlang:</label>
+                            <div class="grid grid-cols-3 gap-3 mb-3">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="reserve_zone" value="Asosiy zal" checked class="hidden" onchange="updateZonePreview('Asosiy zal')">
+                                    <div class="zone-pill p-3 text-center rounded-xl bg-white/5 border border-amber-400 text-xs font-medium text-amber-300 shadow-sm transition-all">
+                                        <i class="fa-solid fa-champagne-glasses block text-base text-amber-400 mb-1"></i>
+                                        Asosiy zal
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="reserve_zone" value="Yozgi veranda" class="hidden" onchange="updateZonePreview('Yozgi veranda')">
+                                    <div class="zone-pill p-3 text-center rounded-xl bg-white/5 border border-white/10 text-xs font-medium text-slate-300 hover:border-amber-400/50 transition-all">
+                                        <i class="fa-solid fa-cloud-sun block text-base text-amber-400 mb-1"></i>
+                                        Yozgi terasa
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="reserve_zone" value="VIP xona" class="hidden" onchange="updateZonePreview('VIP xona')">
+                                    <div class="zone-pill p-3 text-center rounded-xl bg-white/5 border border-white/10 text-xs font-medium text-slate-300 hover:border-amber-400/50 transition-all">
+                                        <i class="fa-solid fa-crown block text-base text-amber-400 mb-1"></i>
+                                        VIP kabina
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Dynamic Zone Visual Preview -->
+                            <div id="zone-preview-container" class="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3.5 transition-all">
+                                <img id="zone-preview-img" src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=300&q=80" alt="Asosiy zal" class="w-16 h-14 rounded-lg object-cover border border-amber-500/30 shrink-0">
+                                <div>
+                                    <h4 id="zone-preview-title" class="text-xs font-bold text-amber-300">Asosiy Grand Zal</h4>
+                                    <p id="zone-preview-desc" class="text-[11px] text-slate-400 mt-0.5">120 o'rinlik hashamatli zal, royal va jonli musiqa sahnasi bilan.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Maxsus istaklar (ixtiyoriy)</label>
+                            <input type="text" id="reserve-notes" placeholder="Masalan: Deraza yonida, romantik shamlar, tug'ilgan kun bezagi..." class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-amber-400">
+                        </div>
+
+                        <button type="submit" class="btn-gold w-full py-4 rounded-xl text-sm font-bold flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Stolni tasdiqlash va bron qilish</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT & CHEFS SECTION -->
+    <section id="about" class="py-24 bg-[#0e1118] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-amber-400 block mb-2">Bizning Falsafamiz</span>
+                    <h2 class="font-serif-luxury text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                        Har Bir Taom — <br>
+                        <span class="text-gold-gradient">Gastronomik San'at Asari</span>
+                    </h2>
+                    <p class="text-sm text-slate-300 mt-5 leading-relaxed">
+                        DEWAYS — bu oddiy restoran emas, balki asriy sharqona lazzat an'analari va Yevropa oliy toifali oshxona san'atining uyg'unlashgan maskanidir. Biz faqat yangi so'yilgan halol go'shtlar, tog' giyohlari va organik sabzavotlardan foydalanamiz.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mt-8 pt-6 border-t border-white/10">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-fire"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-xs font-bold text-white">Josper O'tin Pechi</h5>
+                                <p class="text-[11px] text-slate-400">Yopiq olovda mramor go'shtlar</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-xs font-bold text-white">100% Halol Sertifikat</h5>
+                                <p class="text-[11px] text-slate-400">Halol standartlar kafolati</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80" alt="DEWAYS Interyer" class="rounded-3xl shadow-2xl border border-white/10 object-cover w-full h-96">
+                </div>
+            </div>
+
+            <!-- Chefs List -->
+            <div id="chefs" class="mt-24">
+                <div class="text-center max-w-xl mx-auto mb-12">
+                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-amber-400 block mb-2">Ijodkorlarimiz</span>
+                    <h3 class="font-serif-luxury text-3xl font-bold text-white">Xalqaro Toifadagi Oshpazlarimiz</h3>
+                </div>
+                <div id="chefs-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                    <!-- Populated dynamically by app.js -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 mb-12">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-[0.2em] text-amber-400 block mb-2">Mehmonlarimiz Fikrlari</span>
+                <h2 class="font-serif-luxury text-3xl sm:text-4xl font-bold text-white">Mijozlarimiz E'tirofi</h2>
+            </div>
+            <button onclick="openAddReviewModal()" class="btn-outline-gold px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>Fikr bildirish</span>
+            </button>
+        </div>
+
+        <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Populated dynamically by app.js -->
+        </div>
+    </section>
+
+    <!-- FOOTER & CONTACT -->
+    <footer id="contact" class="bg-[#07090c] border-t border-white/10 pt-16 pb-12 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/5">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500 text-black font-black flex items-center justify-center text-lg">D</div>
+                    <span class="font-serif-luxury text-xl font-bold text-white">DEWAYS</span>
+                </div>
+                <p class="text-slate-400 leading-relaxed">
+                    Toshkentdagi oliy toifali restoran va lounge. Betakror muhit, shohona taomlar va iliq mehmondo'stlik.
+                </p>
+                <div>
+                    <button onclick="openAdminModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-400 border border-amber-500/40 text-xs font-bold transition-all shadow-md shadow-amber-500/10 cursor-pointer">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>👑 Restoran Admin Paneli</span>
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <h5 class="text-white font-bold uppercase tracking-wider mb-4">Manzilimiz</h5>
+                <p class="leading-relaxed">Toshkent shahri, Mirobod tumani, Amir Temur shox ko'chasi, 48-uy</p>
+                <p class="mt-2 text-amber-400">Mo'ljal: Grand Mir Hotel yonida</p>
+            </div>
+
+            <div>
+                <h5 class="text-white font-bold uppercase tracking-wider mb-4">Aloqa & Bron</h5>
+                <p><a href="tel:+998930971880" class="hover:text-amber-400 transition-colors">+998 93 097 18 80</a></p>
+                <p class="mt-1">Har kuni: 10:00 - 23:30</p>
+                <p class="mt-2 text-emerald-400"><i class="fa-solid fa-motorcycle mr-1"></i> Yetkazib berish: 10:00 - 23:00</p>
+            </div>
+
+            <div>
+                <h5 class="text-white font-bold uppercase tracking-wider mb-4">Ijtimoiy Tarmoqlar</h5>
+                <div class="flex items-center gap-3 text-lg">
+                    <a href="https://t.me/deways_restaurant" target="_blank" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-amber-500 hover:text-black flex items-center justify-center text-white transition-all">
+                        <i class="fa-brands fa-telegram"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-amber-500 hover:text-black flex items-center justify-center text-white transition-all">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-amber-500 hover:text-black flex items-center justify-center text-white transition-all">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+            <div>&copy; 2026 DEWAYS Grand Restaurant. Barcha huquqlar himoyalangan.</div>
+            <div class="flex items-center gap-4">
+                <a href="admin.html" class="text-amber-400/90 hover:text-amber-300 transition-colors font-medium flex items-center gap-1.5">
+                    <i class="fa-solid fa-lock text-[10px]"></i> Admin Portal
+                </a>
+                <span>•</span>
+                <span>100% Halol Kafolati</span>
+                <span>•</span>
+                <span>Josper Gril</span>
+                <span>•</span>
+                <span>Lounge & Musiqa</span>
+            </div>
+        </div>
+
+        <!-- Google Maps Location -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h5 class="text-white font-bold text-sm uppercase tracking-wider">Bizning Joylashuvimiz</h5>
+                <span class="text-slate-500 text-xs">— Toshkent, Amir Temur shox ko'chasi 48</span>
+            </div>
+            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl" style="height: 320px;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.7!2d69.2814!3d41.2995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b0cc379e9c3%3A0xa5a9323b4aa5cb98!2sAmir%20Temur%20Ave%2C%20Tashkent%2C%20Uzbekistan!5e0!3m2!1suz!2suz!4v1698000000000!5m2!1suz!2suz"
+                    width="100%"
+                    height="320"
+                    style="border:0; filter: invert(90%) hue-rotate(180deg) saturate(0.7) brightness(0.85);"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="DEWAYS Grand Restaurant manzili - Toshkent">
+                </iframe>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 mt-4 text-xs text-slate-400">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-amber-400"></i> Mirobod tumani, Amir Temur shox ko'chasi 48</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-clock text-amber-400"></i> Har kuni: 10:00 – 23:30</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-car text-amber-400"></i> Parking bor</span>
+                <a href="https://maps.google.com/?q=41.2995,69.2814" target="_blank" class="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-400 border border-amber-500/30 transition-all font-semibold">
+                    <i class="fa-solid fa-map"></i> Google Maps da ochish
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================================================
+         SHOPPING CART DRAWER
+         =================================================== -->
+    <div id="cart-backdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#0e1219] border-l border-white/10 z-50 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300">
+        <!-- Drawer Header -->
+        <div class="p-5 border-b border-white/10 flex items-center justify-between bg-[#131720]">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-bag-shopping text-amber-400"></i>
+                <h3 class="font-serif-luxury text-base font-bold text-white">Sizning Savatingiz</h3>
+            </div>
+            <button onclick="toggleCartDrawer()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-4 space-y-3">
+            <!-- Populated by app.js -->
+        </div>
+
+        <!-- Cart Empty State -->
+        <div id="cart-empty-state" class="flex-1 flex flex-col items-center justify-center p-6 text-center">
+            <div class="w-20 h-20 rounded-full bg-white/5 text-amber-400 flex items-center justify-center text-3xl mb-4">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <h4 class="text-base font-bold text-white">Savatingiz hozircha bo'sh</h4>
+            <p class="text-xs text-slate-400 mt-1 max-w-xs">Menyudan o'zingiz yoqtirgan mazali taomlarni savatga qo'shing.</p>
+        </div>
+
+        <!-- Drawer Footer / Summary -->
+        <div id="cart-footer" class="p-5 border-t border-white/10 bg-[#0d1017] space-y-4">
+            <!-- Promo Code Input -->
+            <div class="flex gap-2">
+                <input type="text" id="promo-input" placeholder="Promo-kod (masalan: DEWAYS10)" class="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-xs text-white uppercase focus:outline-none focus:border-amber-400">
+                <button onclick="applyPromoCode()" class="btn-outline-gold px-4 py-2 rounded-xl text-xs font-bold">Qo'llash</button>
+            </div>
+
+            <!-- Price Breakdown -->
+            <div class="space-y-1.5 text-xs text-slate-300">
+                <div class="flex justify-between">
+                    <span>Taomlar narxi:</span>
+                    <span id="cart-subtotal" class="font-mono font-semibold text-white">0 so'm</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Xizmat haqi (10%):</span>
+                    <span id="cart-service" class="font-mono text-slate-300">0 so'm</span>
+                </div>
+                <div id="cart-discount-row" class="flex justify-between text-emerald-400 hidden">
+                    <span>Chegirma:</span>
+                    <span id="cart-discount" class="font-mono font-semibold">-0 so'm</span>
+                </div>
+                <div class="flex justify-between text-base font-bold text-white pt-2 border-t border-white/10">
+                    <span>Jami:</span>
+                    <span id="cart-total" class="text-amber-400 font-mono">0 so'm</span>
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="clearCart()" class="px-3.5 py-3 rounded-xl bg-white/5 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 border border-white/10 transition-colors" title="Savatni tozalash">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+                <button onclick="openCheckoutModal()" class="btn-gold flex-1 py-3 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                    <span>Buyurtmani rasmiylashtirish</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         CHECKOUT MODAL
+         =================================================== -->
+    <div id="checkout-modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-lg bg-[#11141c] border border-amber-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+                    <h3 class="font-serif-luxury text-lg font-bold text-white">Buyurtmani rasmiylashtirish</h3>
+                </div>
+                <button onclick="closeCheckoutModal()" class="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <p id="checkout-summary-text" class="text-xs text-amber-300 font-medium py-3"></p>
+
+            <form id="checkout-form" class="space-y-4 text-xs" novalidate>
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">To'liq ismingiz *</label>
+                    <input type="text" id="checkout-name" required placeholder="Masalan: Azizbek Mahmudov" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Telefon raqamingiz *</label>
+                    <div class="relative">
+                        <input type="tel" id="checkout-phone" required placeholder="+998 93 097 18 80" autocomplete="tel" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400 transition-all duration-200">
+                    </div>
+                    <div id="checkout-phone-error" class="text-xs text-rose-400 mt-1.5 font-medium hidden flex items-center gap-1.5"></div>
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1.5">Xizmat turi:</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2.5 cursor-pointer hover:border-amber-400/50 transition-all">
+                            <input type="radio" name="order_type" value="Manzilga yetkazib berish (30-40 daqiqa • Termo-sumka)" checked class="accent-amber-400">
+                            <div>
+                                <div class="text-xs font-bold text-white">Yetkazib berish</div>
+                                <div class="text-[10px] text-slate-400">30-40 daqiqada issiq holda</div>
+                            </div>
+                        </label>
+                        <label class="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2.5 cursor-pointer hover:border-amber-400/50 transition-all">
+                            <input type="radio" name="order_type" value="O'zi bilan olib ketish" class="accent-amber-400">
+                            <div>
+                                <div class="text-xs font-bold text-white">O'zi olib ketish</div>
+                                <div class="text-[10px] text-slate-400">Restorandan tayyor holda</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Yetkazib berish manzili / Mo'ljal</label>
+                    <input type="text" id="checkout-address" placeholder="Toshkent sh., Mirobod tumani, Amir Temur 48, 12-xonadon" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1.5">To'lov usuli:</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-1.5 cursor-pointer hover:border-amber-400/50">
+                            <input type="radio" name="payment_method" value="Payme" checked class="accent-amber-400">
+                            <span class="font-bold text-amber-300 text-xs">Payme</span>
+                        </label>
+                        <label class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-1.5 cursor-pointer hover:border-amber-400/50">
+                            <input type="radio" name="payment_method" value="Click" class="accent-amber-400">
+                            <span class="font-bold text-blue-400 text-xs">Click</span>
+                        </label>
+                        <label class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-1.5 cursor-pointer hover:border-amber-400/50">
+                            <input type="radio" name="payment_method" value="Naqd pul" class="accent-amber-400">
+                            <span class="font-bold text-emerald-400 text-xs">Naqd</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Izoh yoki kuryerga eslatma</label>
+                    <input type="text" id="checkout-notes" placeholder="Masalan: Qo'shimcha nonga sous qo'shilsin, domofon kodi: 45..." class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="btn-gold w-full py-3.5 rounded-xl font-bold text-sm">
+                        Buyurtmani tasdiqlash
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         ORDER RECEIPT MODAL
+         =================================================== -->
+    <div id="receipt-modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-md bg-[#131720] border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl">
+            <div id="receipt-content">
+                <!-- Dynamically populated by app.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         LIVE ORDER RADAR TRACKING MODAL (Luxury Courier)
+         =================================================== -->
+    <div id="radar-modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-lg bg-[#11141c] border border-amber-500/40 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden">
+            <!-- Ambient radar glow background -->
+            <div class="absolute -right-20 -top-20 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg border border-amber-500/30">
+                        <i class="fa-solid fa-radar text-amber-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white font-serif-luxury">Jonli Buyurtma Radari</h3>
+                        <p class="text-[11px] text-amber-400 font-mono" id="radar-order-id">Buyurtma: DW-89214</p>
+                    </div>
+                </div>
+                <button onclick="closeRadarModal()" class="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Stylized Luxury Dark Map Visual -->
+            <div class="relative w-full h-44 rounded-2xl overflow-hidden my-5 bg-[#080a0f] border border-white/10 flex items-center justify-center">
+                <!-- Grid background simulation -->
+                <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#d4af37 1px, transparent 1px); background-size: 20px 20px;"></div>
+                
+                <!-- Radar Circle with sweep -->
+                <div class="relative w-28 h-28 rounded-full border border-amber-500/30 flex items-center justify-center">
+                    <div class="absolute w-full h-full rounded-full bg-amber-500/10 radar-ping"></div>
+                    <div class="w-12 h-12 rounded-full bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-amber-400 text-lg shadow-lg shadow-amber-500/30">
+                        <i class="fa-solid fa-motorcycle"></i>
+                    </div>
+                </div>
+
+                <!-- Destination Pin -->
+                <div class="absolute top-6 right-8 text-center">
+                    <div class="w-7 h-7 rounded-full bg-emerald-500 text-black flex items-center justify-center text-xs font-bold mx-auto shadow-lg shadow-emerald-500/50">
+                        <i class="fa-solid fa-house"></i>
+                    </div>
+                    <span class="text-[10px] text-emerald-300 font-bold block mt-1">Sizning manzil</span>
+                </div>
+
+                <!-- Route dashed line -->
+                <div class="absolute inset-x-12 top-1/2 h-0.5 border-t-2 border-dashed border-amber-400/40 pointer-events-none"></div>
+
+                <div class="absolute bottom-2 left-3 bg-black/80 px-2.5 py-1 rounded-lg text-[10px] text-slate-300 border border-white/10">
+                    <i class="fa-solid fa-location-arrow text-amber-400 mr-1"></i> Toshkent, Amir Temur shox ko'chasi
+                </div>
+            </div>
+
+            <!-- Live Status Steps -->
+            <div class="space-y-3 py-2 text-xs">
+                <div class="flex items-center gap-3 text-emerald-400 font-semibold">
+                    <div class="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <span>Buyurtma oshxonaga yetkazildi</span>
+                    <span class="text-[10px] text-slate-500 ml-auto font-mono">Bajarildi</span>
+                </div>
+                <div class="flex items-center gap-3 text-amber-300 font-semibold">
+                    <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-xs animate-pulse">
+                        <i class="fa-solid fa-fire text-amber-400"></i>
+                    </div>
+                    <span>Josper pechida tayyorlanmoqda (Termo 75°C)</span>
+                    <span class="text-[10px] text-amber-400 ml-auto font-mono">Hozir</span>
+                </div>
+                <div class="flex items-center gap-3 text-slate-400">
+                    <div class="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-motorcycle text-slate-500"></i>
+                    </div>
+                    <span>Kuryer harakatda: Jasur Alimov (Spark 01 A 777 AA)</span>
+                    <span class="text-[10px] text-slate-500 ml-auto font-mono">~25 daqiqa</span>
+                </div>
+            </div>
+
+            <!-- Courier Details Card -->
+            <div class="mt-4 p-3 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 font-bold">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-white">DEWAYS Tezkor Kuryer</div>
+                        <div class="text-[11px] text-emerald-400"><i class="fa-solid fa-circle-check"></i> Termo-sumka tekshirildi (75°C)</div>
+                    </div>
+                </div>
+                <a href="tel:+998930971880" class="btn-gold px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>Aloqa</span>
+                </a>
+            </div>
+
+            <button onclick="closeRadarModal()" class="btn-outline-gold w-full py-3 rounded-xl text-xs font-bold mt-4">
+                Yopish
+            </button>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         RESERVATION CONFIRMATION TICKET MODAL
+         =================================================== -->
+    <div id="reservation-confirm-modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-md bg-[#131720] border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl">
+            <div id="reservation-confirm-content">
+                <!-- Dynamically populated by app.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         DISH DETAIL MODAL
+         =================================================== -->
+    <div id="dish-modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4">
+        <div id="dish-modal-content" class="relative w-full max-w-lg bg-[#11141c] border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
+            <!-- Dynamically populated by app.js -->
+        </div>
+    </div>
+
+    <!-- ===================================================
+         ADD REVIEW MODAL
+         =================================================== -->
+    <div id="add-review-modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-md bg-[#11141c] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
+                <h3 class="font-serif-luxury text-base font-bold text-white">Restoranga Fikr Qoldirish</h3>
+                <button onclick="closeAddReviewModal()" class="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form id="review-form" class="space-y-4 text-xs">
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Ismingiz *</label>
+                    <input type="text" id="review-author" required placeholder="Masalan: Sardor Komilov" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                </div>
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Kasbingiz / Kimligingiz (ixtiyoriy)</label>
+                    <input type="text" id="review-role" placeholder="Masalan: Arxitektor, Mehmon..." class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                </div>
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Baho (Yulduzcha) *</label>
+                    <select id="review-rating" class="w-full px-3.5 py-2.5 bg-[#151a24] border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                        <option value="5">⭐⭐⭐⭐⭐ 5 yulduz (A'lo darajada)</option>
+                        <option value="4">⭐⭐⭐⭐ 4 yulduz (Yaxshi)</option>
+                        <option value="3">⭐⭐⭐ 3 yulduz (O'rtacha)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Sharhingiz *</label>
+                    <textarea id="review-text" rows="3" required placeholder="Restoran taomlari, xizmat ko'rsatish va muhit haqidagi taassurotlaringiz..." class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400"></textarea>
+                </div>
+                <button type="submit" class="btn-gold w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider">
+                    Sharhni yuborish
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         CINEMATIC RESTAURANT VIDEO MODAL (HD Video Player)
+         =================================================== -->
+    <div id="video-showcase-modal" onclick="if(event.target === this) closeVideoModal()" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-md">
+        <div class="relative w-full max-w-4xl bg-[#0b0d11] border border-amber-500/40 rounded-3xl overflow-hidden shadow-2xl">
+            <!-- Modal Header -->
+            <div class="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-[#11141c]">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                        <i class="fa-solid fa-film"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif-luxury text-base sm:text-lg font-bold text-white">DEWAYS Grand Restaurant & Josper Show</h3>
+                        <p class="text-[11px] text-amber-400 font-medium">Eksklyuziv 4K Gastro-Video</p>
+                    </div>
+                </div>
+                <button onclick="closeVideoModal()" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-rose-500 hover:text-white text-slate-300 flex items-center justify-center transition-colors cursor-pointer">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <!-- Video Player -->
+            <div class="relative bg-black aspect-video flex items-center justify-center overflow-hidden">
+                <video id="modal-showcase-video" controls autoplay loop playsinline poster="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-contain">
+                    <source src="deways-intro.mp4" type="video/mp4">
+                    <source src="./deways-intro.mp4" type="video/mp4">
+                    <source src="file:///C:/Users/normi/.gemini/antigravity/brain/f0ed627f-48fc-474a-a5cb-20c2067a883f/.user_uploaded/media_1793349934035_46fed3f4.mp4" type="video/mp4">
+                    <source src="C:/Users/normi/.gemini/antigravity/brain/f0ed627f-48fc-474a-a5cb-20c2067a883f/.user_uploaded/media_1793349934035_46fed3f4.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 sm:p-5 border-t border-white/10 bg-[#11141c] flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-4 text-xs text-slate-300">
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-fire text-amber-400"></i> Josper 350°C O'tin Olovi</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-music text-amber-400"></i> Jonli FortePiano</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-certificate text-emerald-400"></i> 100% Halol</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="#reservation" onclick="closeVideoModal()" class="btn-gold px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>Stol band qilish</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         FLOATING BACKGROUND LOUNGE MUSIC PLAYER
+         =================================================== -->
+    <aside aria-label="Fon musiqasi" class="fixed bottom-6 left-6 z-40 bg-[#11141c]/95 backdrop-blur-md border border-amber-500/40 rounded-2xl p-2.5 pr-4 shadow-2xl flex items-center gap-3.5 group hover:border-amber-400 transition-all">
+        <!-- Album / Song Cover Image with Play/Pause Badge -->
+        <button id="music-toggle-btn" onclick="toggleBackgroundMusic()" class="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 border border-amber-500/40 shadow-lg cursor-pointer group-hover:scale-105 transition-transform" title="Sokin musiqani yoqish / to'xtatish">
+            <img id="music-cover-img" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=200&q=80" alt="DEWAYS Sokin Lounge Musiqa" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/45 flex items-center justify-center transition-colors hover:bg-black/30">
+                <div id="music-eq" class="music-bars hidden flex items-end gap-0.5 h-4">
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                </div>
+                <i id="music-play-icon" class="fa-solid fa-play text-xs text-amber-400 drop-shadow"></i>
+            </div>
+        </button>
+
+        <!-- Info & Status -->
+        <div class="cursor-pointer select-none" onclick="toggleBackgroundMusic()">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                <span id="music-live-dot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>DEWAYS Sokin Lounge</span>
+            </div>
+            <div id="music-status-text" class="text-xs text-slate-100 font-semibold whitespace-nowrap">
+                Sokin Royal & Lounge
+            </div>
+        </div>
+
+        <!-- MP3 Upload & Volume Controls -->
+        <div class="hidden sm:flex items-center gap-2.5 pl-2 border-l border-white/10">
+            <label class="cursor-pointer text-amber-400 hover:text-amber-300 text-xs flex items-center gap-1 font-semibold p-1 bg-white/5 hover:bg-white/10 rounded-lg px-2 border border-white/10 transition-colors" title="Kompyuteringizdan istalgan MP3 musiqani qo'yish">
+                <i class="fa-solid fa-upload text-amber-400 text-[10px]"></i>
+                <span class="text-[9px] tracking-wide uppercase font-bold">MP3</span>
+                <input type="file" id="local-music-upload" accept="audio/*" class="hidden" onchange="handleLocalMusicUpload(event)">
+            </label>
+            <button id="music-mute-btn" onclick="toggleMusicMute()" class="text-slate-400 hover:text-amber-400 text-xs transition-colors p-1 cursor-pointer" title="Ovozni o'chirish / yoqish">
+                <i class="fa-solid fa-volume-high"></i>
+            </button>
+            <input type="range" id="music-volume" min="0" max="1" step="0.05" value="0.75" oninput="setMusicVolume(this.value)" class="w-14 h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-amber-400" title="Ovoz balandligi">
+        </div>
+    </aside>
+
+    <!-- FLOATING ALWAYS-VISIBLE ADMIN BUTTON -->
+    <button onclick="openAdminModal()" class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-black font-extrabold text-xs shadow-2xl shadow-amber-500/50 hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-white/20 group uppercase tracking-wider cursor-pointer" title="Restoran Admin Panelini ochish (Taom qo'shish & Nazorat)">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-950 animate-ping"></span>
+        <i class="fa-solid fa-shield-halved text-sm group-hover:rotate-12 transition-transform"></i>
+        <span>ADMIN PANEL</span>
+    </button>
+
+    <!-- ===================================================
+         ADMIN LOGIN / PASSWORD MODAL (Boshqaruv Himoyasi)
+         =================================================== -->
+    <div id="admin-login-modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4">
+        <div id="admin-login-card" class="relative w-full max-w-md bg-[#11141c] border border-amber-500/40 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden transition-transform">
+            <!-- Ambient Glow -->
+            <div class="absolute -top-20 -right-20 w-44 h-44 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg border border-amber-500/30">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif-luxury text-base font-bold text-white">DEWAYS Himoya Tizimi</h3>
+                        <p class="text-[11px] text-slate-400">Restoran boshqaruviga xavfsiz kirish</p>
+                    </div>
+                </div>
+                <button onclick="closeAdminLoginModal()" class="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-colors cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="admin-login-form" onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-slate-300 text-xs font-semibold mb-2">Maxfiy Admin Parolini Kiriting *</label>
+                    <div class="relative">
+                        <input type="password" id="admin-login-password" required autocomplete="current-password" placeholder="Parolni kiriting..." class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400 tracking-wider font-mono pr-12 transition-all">
+                        <button type="button" onclick="toggleAdminPasswordVisibility()" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-amber-400 transition-colors cursor-pointer text-sm">
+                            <i id="admin-password-eye" class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                    <div id="admin-login-error" class="text-xs text-rose-400 mt-2 font-medium hidden flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <span>Parol noto'g'ri! Iltimos, qaytadan tering.</span>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="btn-gold w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all cursor-pointer">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Boshqaruv Paneliga Kirish</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         INLINE RESTAURANT ADMIN CONTROL CENTER MODAL
+         =================================================== -->
+    <div id="admin-control-modal" class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
+        <div class="relative w-full max-w-6xl max-h-[92vh] bg-[#0c0f16] border border-amber-500/40 rounded-3xl shadow-2xl flex flex-col overflow-hidden my-auto">
+            <!-- Modal Header -->
+            <div class="p-5 sm:px-8 border-b border-white/10 flex items-center justify-between bg-[#11141c]">
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-700 flex items-center justify-center text-black font-black text-xl shadow-lg shadow-amber-500/30">
+                        <i class="fa-solid fa-shield-halved text-black"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2.5">
+                            <h2 class="font-serif-luxury text-lg sm:text-2xl font-bold text-white tracking-wide">DEWAYS Restoran Boshqaruv Markazi</h2>
+                            <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-mono border border-emerald-500/30 font-bold hidden sm:inline-flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> JONLI REJIM
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-400">Taomlar qo'shish, buyurtmalar, stol bronlari va restoran nazorati</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <a href="admin.html" target="_blank" class="hidden sm:flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-amber-500/20 border border-white/10 text-slate-300 hover:text-amber-300 text-xs font-semibold transition-all" title="Alohida to'liq sahifada ochish">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-amber-400 text-xs"></i>
+                        <span>Alohida sahifa</span>
+                    </a>
+                    <button onclick="logoutAdmin()" class="px-3 py-2 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-300 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer" title="Admin paneldan chiqish">
+                        <i class="fa-solid fa-right-from-bracket text-rose-400"></i>
+                        <span class="hidden sm:inline">Chiqish</span>
+                    </button>
+                    <button onclick="closeAdminModal()" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center border border-white/10 transition-colors cursor-pointer" title="Yopish">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Navigation Tabs -->
+            <div class="flex items-center gap-2 px-4 sm:px-8 py-3 bg-[#0e121a] border-b border-white/5 overflow-x-auto text-xs font-bold scrollbar-none">
+                <button onclick="switchAdminTab('dishes')" id="admin-tab-btn-dishes" class="admin-nav-tab active px-4 py-2.5 rounded-xl bg-amber-500 text-black flex items-center gap-2 whitespace-nowrap transition-all shadow-md shadow-amber-500/20 cursor-pointer">
+                    <i class="fa-solid fa-utensils"></i>
+                    <span>Taomlar & Menyu Qo'shish</span>
+                    <span id="admin-badge-dishes-count" class="px-2 py-0.5 rounded-full bg-black/30 text-white text-[10px] font-mono">12</span>
+                </button>
+                <button onclick="switchAdminTab('orders')" id="admin-tab-btn-orders" class="admin-nav-tab px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 flex items-center gap-2 whitespace-nowrap transition-all border border-white/5 cursor-pointer">
+                    <i class="fa-solid fa-bell-concierge text-amber-400"></i>
+                    <span>Buyurtmalar Nazorati</span>
+                    <span id="admin-badge-orders-count" class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-mono font-bold">2</span>
+                </button>
+                <button onclick="switchAdminTab('reservations')" id="admin-tab-btn-reservations" class="admin-nav-tab px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 flex items-center gap-2 whitespace-nowrap transition-all border border-white/5 cursor-pointer">
+                    <i class="fa-solid fa-calendar-check text-amber-400"></i>
+                    <span>Stol Bronlari</span>
+                    <span id="admin-badge-res-count" class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-mono font-bold">2</span>
+                </button>
+                <button onclick="switchAdminTab('stats')" id="admin-tab-btn-stats" class="admin-nav-tab px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 flex items-center gap-2 whitespace-nowrap transition-all border border-white/5 cursor-pointer">
+                    <i class="fa-solid fa-chart-line text-amber-400"></i>
+                    <span>Statistika & Sozlamalar</span>
+                </button>
+            </div>
+
+            <!-- Modal Body Content (Scrollable) -->
+            <div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-6">
+
+                <!-- ==============================================
+                     TAB 1: DISHES & ADD DISH FORM
+                     ============================================== -->
+                <div id="admin-tab-dishes" class="admin-tab-content space-y-8">
+                    <!-- ADD NEW DISH CARD -->
+                    <div class="p-6 rounded-2xl bg-[#131722] border border-amber-500/30 shadow-xl">
+                        <div class="flex items-center gap-3 pb-4 border-b border-white/10 mb-5">
+                            <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-circle-plus"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif-luxury text-base sm:text-lg font-bold text-white">Menyuga Yangi Taom Qo'shish</h3>
+                                <p class="text-[11px] text-slate-400">Qo'shilgan taom bir zumda saytning asosiy menyusida paydo bo'ladi</p>
+                            </div>
+                        </div>
+
+                        <form id="admin-add-dish-form" onsubmit="handleAdminAddDish(event)" class="space-y-4 text-xs">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-slate-300 font-semibold mb-1">Taom nomi *</label>
+                                    <input type="text" id="admin-dish-name" required placeholder="Masalan: Qozon Kabob (Lahm go'sht)" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                                </div>
+                                <div>
+                                    <label class="block text-slate-300 font-semibold mb-1">Kategoriya / Bo'lim *</label>
+                                    <select id="admin-dish-category" class="w-full px-3.5 py-2.5 bg-[#151a24] border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                                        <option value="national">Milliy taomlar</option>
+                                        <option value="steaks">Steyk va Gril</option>
+                                        <option value="salads">Salat va Gazaklar</option>
+                                        <option value="soups">Sho'rvalar</option>
+                                        <option value="desserts">Shirinliklar</option>
+                                        <option value="drinks">Ichimlik va Kokteyllar</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-slate-300 font-semibold mb-1">Narxi (so'mda) *</label>
+                                    <input type="number" id="admin-dish-price" required placeholder="Masalan: 85000" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm font-mono focus:outline-none focus:border-amber-400">
+                                </div>
+                                <div>
+                                    <label class="block text-slate-300 font-semibold mb-1">Vazni / Portsiya</label>
+                                    <input type="text" id="admin-dish-weight" placeholder="Masalan: 450 gr" value="400 gr" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                                </div>
+                                <div>
+                                    <label class="block text-slate-300 font-semibold mb-1">Kaloriyasi</label>
+                                    <input type="text" id="admin-dish-calories" placeholder="Masalan: 650 kkal" value="550 kkal" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                                </div>
+                                <div>
+                                    <label class="block text-slate-300 font-semibold mb-1">Maxsus nishon (Badge)</label>
+                                    <select id="admin-dish-badge" class="w-full px-3.5 py-2.5 bg-[#151a24] border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400">
+                                        <option value="Yangi">✨ Yangi taom</option>
+                                        <option value="Xit taom">🔥 Xit taom</option>
+                                        <option value="Chef Tavsiyasi">👑 Chef Tavsiyasi</option>
+                                        <option value="">Nishonsiz</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-slate-300 font-semibold mb-1">Taom rasmi (URL havola) *</label>
+                                <div class="flex gap-2">
+                                    <input type="url" id="admin-dish-image" required placeholder="https://images.unsplash.com/..." value="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" class="flex-1 px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-xs font-mono focus:outline-none focus:border-amber-400">
+                                </div>
+                                <!-- Quick Image Presets -->
+                                <div class="flex flex-wrap items-center gap-2 mt-2">
+                                    <span class="text-[11px] text-slate-400">Tayyor rasmlar:</span>
+                                    <button type="button" onclick="setAdminDishImagePreset('plov')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-amber-500/20 text-slate-300 text-[11px] border border-white/10 transition-colors">🍲 Osh</button>
+                                    <button type="button" onclick="setAdminDishImagePreset('steak')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-amber-500/20 text-slate-300 text-[11px] border border-white/10 transition-colors">🥩 Steyk</button>
+                                    <button type="button" onclick="setAdminDishImagePreset('kebab')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-amber-500/20 text-slate-300 text-[11px] border border-white/10 transition-colors">🍢 Kabob</button>
+                                    <button type="button" onclick="setAdminDishImagePreset('salad')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-amber-500/20 text-slate-300 text-[11px] border border-white/10 transition-colors">🥗 Salat</button>
+                                    <button type="button" onclick="setAdminDishImagePreset('soup')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-amber-500/20 text-slate-300 text-[11px] border border-white/10 transition-colors">🥣 Sho'rva</button>
+                                    <button type="button" onclick="setAdminDishImagePreset('dessert')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-amber-500/20 text-slate-300 text-[11px] border border-white/10 transition-colors">🍰 Desert</button>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-slate-300 font-semibold mb-1">Qisqacha tavsifi *</label>
+                                    <textarea id="admin-dish-desc" rows="2" placeholder="Taom qanday tayyorlanishi va uning betakror ta'mi..." class="w-full px-3.5 py-2 bg-white/5 border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-amber-400">DEWAYS oshpazlarining maxsus resepti bo'yicha tayyorlangan shohona taom.</textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-slate-300 font-semibold mb-1">Masalliqlari</label>
+                                    <textarea id="admin-dish-ingredients" rows="2" placeholder="Sara lahm go'sht, sarimsoq, zira, maxsus sous..." class="w-full px-3.5 py-2 bg-white/5 border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-amber-400">Sara go'sht, sara masalliqlar, maxsus sous va tabiiy ziravorlar</textarea>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between pt-2">
+                                <label class="flex items-center gap-2 cursor-pointer text-slate-300">
+                                    <input type="checkbox" id="admin-dish-halal" checked class="accent-amber-400 w-4 h-4">
+                                    <span class="font-semibold text-emerald-400"><i class="fa-solid fa-shield-halved"></i> 100% Halol sertifikatli</span>
+                                </label>
+
+                                <button type="submit" class="btn-gold px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>Taomni Menyuga Qo'shish</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- CURRENT DISHES LIST -->
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h3 class="font-serif-luxury text-base sm:text-lg font-bold text-white">Menyudagi Barcha Taomlar</h3>
+                                <p class="text-[11px] text-slate-400">Har qanday taomni bir bosishda o'chirishingiz yoki ko'rishingiz mumkin</p>
+                            </div>
+                            <span id="admin-dishes-badge-total" class="px-3 py-1 rounded-xl bg-white/5 text-amber-400 border border-white/10 text-xs font-mono font-bold">12 ta taom</span>
+                        </div>
+
+                        <div id="admin-modal-dishes-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <!-- Populated dynamically by app.js -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==============================================
+                     TAB 2: ORDERS MANAGEMENT
+                     ============================================== -->
+                <div id="admin-tab-orders" class="admin-tab-content hidden space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-[#11141c] border border-white/10">
+                        <!-- Filters -->
+                        <div class="flex flex-wrap items-center gap-2 text-xs">
+                            <button onclick="filterInlineOrders('all')" class="admin-order-filter active px-3 py-1.5 rounded-xl bg-amber-500 text-black font-bold">Barchasi</button>
+                            <button onclick="filterInlineOrders('Kutilmoqda')" class="admin-order-filter px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-semibold">Kutilmoqda</button>
+                            <button onclick="filterInlineOrders('Oshxonada')" class="admin-order-filter px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-semibold">Oshxonada</button>
+                            <button onclick="filterInlineOrders('Kuryerda')" class="admin-order-filter px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-semibold">Kuryerda</button>
+                            <button onclick="filterInlineOrders('Yetkazildi')" class="admin-order-filter px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-semibold">Yetkazildi</button>
+                        </div>
+                        <button onclick="generateSampleOrderInline()" class="px-3.5 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-semibold flex items-center gap-1.5">
+                            <i class="fa-solid fa-plus"></i> Test buyurtma qo'shish
+                        </button>
+                    </div>
+
+                    <div class="rounded-2xl border border-white/10 overflow-hidden bg-[#11141c]">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-xs">
+                                <thead>
+                                    <tr class="bg-white/5 border-b border-white/10 text-slate-400 font-semibold">
+                                        <th class="p-3 pl-4">ID</th>
+                                        <th class="p-3">Mijoz</th>
+                                        <th class="p-3">Manzil</th>
+                                        <th class="p-3">Taomlar</th>
+                                        <th class="p-3">Summa</th>
+                                        <th class="p-3">Holat</th>
+                                        <th class="p-3 pr-4 text-right">Boshqaruv</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-orders-table-body" class="divide-y divide-white/5">
+                                    <!-- Populated dynamically by app.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==============================================
+                     TAB 3: RESERVATIONS MANAGEMENT
+                     ============================================== -->
+                <div id="admin-tab-reservations" class="admin-tab-content hidden space-y-4">
+                    <div class="flex items-center justify-between p-4 rounded-2xl bg-[#11141c] border border-white/10">
+                        <div class="text-xs text-slate-300">
+                            Sayt orqali bron qilingan barcha stollar ro'yxati
+                        </div>
+                        <button onclick="generateSampleReservationInline()" class="px-3.5 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-semibold flex items-center gap-1.5">
+                            <i class="fa-solid fa-plus"></i> Test bron qo'shish
+                        </button>
+                    </div>
+
+                    <div class="rounded-2xl border border-white/10 overflow-hidden bg-[#11141c]">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-xs">
+                                <thead>
+                                    <tr class="bg-white/5 border-b border-white/10 text-slate-400 font-semibold">
+                                        <th class="p-3 pl-4">Bron kodi</th>
+                                        <th class="p-3">Mehmon</th>
+                                        <th class="p-3">Telefon</th>
+                                        <th class="p-3">Sana & Vaqt</th>
+                                        <th class="p-3">Mehmonlar</th>
+                                        <th class="p-3">Stol</th>
+                                        <th class="p-3">Maxsus istak</th>
+                                        <th class="p-3">Holat</th>
+                                        <th class="p-3 pr-4 text-right">Amal</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-res-table-body" class="divide-y divide-white/5">
+                                    <!-- Populated dynamically by app.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==============================================
+                     TAB 4: STATS & RESTAURANT SETTINGS
+                     ============================================== -->
+                <div id="admin-tab-stats" class="admin-tab-content hidden space-y-6">
+                    <!-- KPI Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="p-5 rounded-2xl bg-[#11141c] border border-white/10">
+                            <div class="text-xs text-slate-400">Bugungi Tushum</div>
+                            <div id="admin-kpi-revenue" class="text-2xl font-bold text-white font-mono mt-2">14,850,000 so'm</div>
+                            <div class="text-[11px] text-emerald-400 mt-1"><i class="fa-solid fa-arrow-trend-up"></i> +18.4% kechagiga nisbatan</div>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-[#11141c] border border-white/10">
+                            <div class="text-xs text-slate-400">Jami Buyurtmalar</div>
+                            <div id="admin-kpi-orders" class="text-2xl font-bold text-white font-mono mt-2">38 ta</div>
+                            <div class="text-[11px] text-emerald-400 mt-1"><i class="fa-solid fa-check"></i> Onlayn buyurtmalar</div>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-[#11141c] border border-white/10">
+                            <div class="text-xs text-slate-400">Band Stollar</div>
+                            <div id="admin-kpi-res" class="text-2xl font-bold text-white font-mono mt-2">16 ta stol</div>
+                            <div class="text-[11px] text-amber-400 mt-1"><i class="fa-solid fa-clock"></i> 85% bandlik darajasi</div>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-[#11141c] border border-white/10">
+                            <div class="text-xs text-slate-400">Mijozlar Bahosi</div>
+                            <div class="text-2xl font-bold text-amber-400 font-mono mt-2">5.0 / 5.0</div>
+                            <div class="text-[11px] text-slate-400 mt-1">⭐⭐⭐⭐⭐ 142 ta sharh</div>
+                        </div>
+                    </div>
+
+                    <!-- Restaurant Settings Form -->
+                    <div class="p-6 rounded-2xl bg-[#11141c] border border-white/10 space-y-4">
+                        <h4 class="font-bold text-white text-sm pb-3 border-b border-white/10">Restoran Aloqa & Ish Rejimi Sozlamalari</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                            <div>
+                                <label class="block text-slate-400 mb-1">Restoran nomi</label>
+                                <input type="text" value="DEWAYS Grand Restaurant & Lounge" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1">Telefon raqami</label>
+                                <input type="text" value="+998 93 097 18 80" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1">Ish vaqti</label>
+                                <input type="text" value="Har kuni: 10:00 - 23:30" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white">
+                            </div>
+                        </div>
+                        <div class="pt-2 flex justify-end">
+                            <button onclick="saveAdminSettings()" class="btn-gold px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider">
+                                Sozlamalarni saqlash
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Change Password Card -->
+                    <div class="p-6 rounded-2xl bg-[#11141c] border border-white/10 space-y-4">
+                        <h4 class="font-bold text-white text-sm pb-3 border-b border-white/10 flex items-center gap-2">
+                            <i class="fa-solid fa-key text-amber-400"></i>
+                            <span>Admin Parolini O'zgartirish</span>
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <label class="block text-slate-400 mb-1">Yangi maxfiy parol</label>
+                                <input type="password" id="admin-new-password" placeholder="Yangi parol kiriting (masalan: 1234)..." class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white font-mono focus:outline-none focus:border-amber-400">
+                            </div>
+                            <div class="flex items-end">
+                                <button type="button" onclick="changeAdminPassword()" class="btn-outline-gold px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider h-[42px] cursor-pointer">
+                                    Parolni yangilash
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toast-container" class="fixed top-24 right-6 z-50 space-y-2 pointer-events-none"></div>
+
+    <!-- SCRIPTS -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

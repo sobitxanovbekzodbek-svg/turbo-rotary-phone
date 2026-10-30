@@ -1,0 +1,389 @@
+/* ===================================================
+   DEWAYS RESTAURANT - LUXURY DARK & GOLD STYLES & ANIMATIONS
+   =================================================== */
+
+:root {
+    --bg-dark: #0b0d11;
+    --bg-card: #131720;
+    --bg-card-hover: #191f2c;
+    --gold-primary: #d4af37;
+    --gold-light: #f3e5ab;
+    --gold-dark: #997d25;
+    --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f9d976 50%, #c59b27 100%);
+    --gold-glow: 0 0 25px rgba(212, 175, 55, 0.25);
+    --gold-glow-strong: 0 0 35px rgba(212, 175, 55, 0.45);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-color: rgba(212, 175, 55, 0.25);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0b0d11;
+}
+::-webkit-scrollbar-thumb {
+    background: #2a3346;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-dark);
+}
+
+/* General & Typography */
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+}
+
+.font-serif-luxury {
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Glassmorphism Classes */
+.glass-nav {
+    background: rgba(11, 13, 17, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.glass-card {
+    background: rgba(19, 23, 32, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-subtle);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Luxury Light Ray Hover on Glass Cards */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(212, 175, 55, 0.08),
+        transparent
+    );
+    transform: skewX(-25deg);
+    transition: left 0.75s ease;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.glass-card:hover::before {
+    left: 150%;
+}
+
+.glass-card:hover {
+    border-color: var(--border-color);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.8), var(--gold-glow);
+}
+
+/* Gold Gradient Accents */
+.text-gold-gradient {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-gold {
+    background: var(--gold-gradient);
+    color: #0b0d11;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+    filter: brightness(1.08);
+}
+
+.btn-outline-gold {
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-light);
+    background: rgba(212, 175, 55, 0.05);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-gold:hover {
+    background: var(--gold-primary);
+    color: #0b0d11;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Ambient Mouse Spotlight */
+.mouse-spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(
+        600px circle at var(--cursor-x, 50vw) var(--cursor-y, 50vh),
+        rgba(212, 175, 55, 0.06),
+        transparent 70%
+    );
+    transition: opacity 0.3s ease;
+}
+
+/* Hero Particles Canvas */
+#hero-particles-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Scroll to Top Button */
+#scroll-top-btn {
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    transform: translateY(10px);
+}
+#scroll-top-btn.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Category Filter Active */
+.category-btn.active {
+    background: var(--gold-gradient);
+    color: #0b0d11;
+    border-color: transparent;
+    font-weight: 700;
+    box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
+}
+
+/* Scroll Reveal Base */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Flying Dish to Cart Animation */
+.flying-cart-ghost {
+    position: fixed;
+    z-index: 9999;
+    border-radius: 50%;
+    pointer-events: none;
+    object-fit: cover;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Steam particle rising animation for Josper meats */
+.steam-container {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.steam-particle {
+    width: 6px;
+    height: 20px;
+    background: linear-gradient(to top, rgba(243, 229, 171, 0.4), transparent);
+    border-radius: 50%;
+    filter: blur(2px);
+    animation: steamRise 2.8s infinite ease-out;
+}
+
+.steam-particle:nth-child(2) {
+    animation-delay: 0.9s;
+    height: 24px;
+}
+
+.steam-particle:nth-child(3) {
+    animation-delay: 1.8s;
+    height: 18px;
+}
+
+@keyframes steamRise {
+    0% {
+        transform: translateY(0) scaleX(0.8);
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-30px) scaleX(1.8);
+        opacity: 0;
+    }
+}
+
+/* 3D Perspective Card Tilt */
+.tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+/* Pulsing Badge & Rings */
+@keyframes ringPulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+.ring-pulse-gold {
+    animation: ringPulse 3s infinite;
+}
+
+/* Counter Number Glow */
+.counter-glow {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Table Zone Card Active Border */
+.zone-btn-active {
+    border-color: #d4af37 !important;
+    background: rgba(212, 175, 55, 0.15) !important;
+    color: #f3e5ab !important;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+/* ===================================================
+   INTERACTIVE RESTAURANT TABLE MAP
+   =================================================== */
+.table-node {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    user-select: none;
+}
+
+.table-node:hover:not(.is-occupied) {
+    transform: translateY(-3px) scale(1.03);
+    border-color: rgba(212, 175, 55, 0.8) !important;
+    box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.3);
+}
+
+.table-node.is-selected {
+    border-color: #d4af37 !important;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(184, 148, 43, 0.1)) !important;
+    box-shadow: 0 0 0 2px #d4af37, 0 10px 25px rgba(212, 175, 55, 0.35) !important;
+    transform: scale(1.04);
+}
+
+.table-node.is-occupied {
+    opacity: 0.45;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+}
+
+/* Confetti Fullscreen Canvas */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Radar Tracking Wave */
+@keyframes radarSweep {
+    0% { transform: scale(0.9); opacity: 0.8; }
+    100% { transform: scale(2.4); opacity: 0; }
+}
+
+.radar-ping {
+    animation: radarSweep 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Luxury Ticker Animation */
+@keyframes tickerSlide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.ticker-track {
+    display: flex;
+    width: 200%;
+    animation: tickerSlide 25s linear infinite;
+}
+
+.ticker-track:hover {
+    animation-play-state: paused;
+}
+
+/* Modal Overlay Blur */
+.modal-overlay {
+    background: rgba(5, 7, 10, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Admin Modal Tab Active */
+.admin-nav-tab.active {
+    background: var(--gold-gradient) !important;
+    color: #0b0d11 !important;
+    font-weight: 800;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+}
+
+/* Shake Animation for Wrong Password */
+@keyframes shakeAnimation {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-8px); }
+    40%, 80% { transform: translateX(8px); }
+}
+.animate-shake {
+    animation: shakeAnimation 0.4s ease-in-out;
+}
+
+/* Floating Music Player Equalizer */
+.music-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 2.5px;
+    height: 16px;
+}
+.eq-bar {
+    width: 2.5px;
+    background: var(--gold-gradient);
+    border-radius: 2px;
+    animation: eqBounce 1.2s infinite ease-in-out alternate;
+}
+.eq-bar:nth-child(1) { height: 35%; animation-delay: 0.1s; }
+.eq-bar:nth-child(2) { height: 95%; animation-delay: 0.35s; }
+.eq-bar:nth-child(3) { height: 60%; animation-delay: 0.2s; }
+.eq-bar:nth-child(4) { height: 100%; animation-delay: 0.45s; }
+
+@keyframes eqBounce {
+    0% { height: 20%; opacity: 0.7; }
+    50% { height: 90%; opacity: 1; }
+    100% { height: 30%; opacity: 0.8; }
+}

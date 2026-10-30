@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEWAYS Grand | Boshqaruv Paneli (Admin Portal)</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --gold-primary: #d4af37;
+            --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f9d976 50%, #c59b27 100%);
+            --bg-dark: #090b0e;
+            --bg-card: #11141c;
+            --bg-card-hover: #161b26;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-serif-luxury {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .font-mono-code {
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #090b0e; }
+        ::-webkit-scrollbar-thumb { background: #2a3346; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold-primary); }
+
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: #0b0d11;
+            font-weight: 700;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+        }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            filter: brightness(1.08);
+        }
+
+        .admin-nav-item.active {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            color: #f3e5ab;
+            border-left: 3px solid #d4af37;
+        }
+
+        /* Pulse animation */
+        @keyframes adminPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.08); opacity: 0.75; }
+        }
+        .live-dot {
+            animation: adminPulse 2s infinite ease-in-out;
+        }
+        /* Shake Animation */
+        @keyframes shakeAnimation {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        .animate-shake {
+            animation: shakeAnimation 0.4s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col md:flex-row antialiased">
+
+    <!-- ===================================================
+         FULL-SCREEN ADMIN LOGIN OVERLAY
+         =================================================== -->
+    <div id="admin-auth-overlay" class="fixed inset-0 z-50 bg-[#090b0e] flex items-center justify-center p-4">
+        <div id="admin-auth-card" class="relative w-full max-w-md bg-[#11141c] border border-amber-500/40 rounded-3xl p-8 shadow-2xl overflow-hidden transition-transform">
+            <!-- Glow background -->
+            <div class="absolute -top-24 -right-24 w-52 h-52 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="text-center pb-6 border-b border-white/10 mb-6">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-700 flex items-center justify-center text-black font-black text-2xl mx-auto mb-4 shadow-xl shadow-amber-500/30">
+                    <i class="fa-solid fa-lock text-black"></i>
+                </div>
+                <h2 class="font-serif-luxury text-2xl font-bold text-white">DEWAYS Admin Portal</h2>
+                <p class="text-xs text-slate-400 mt-1">Boshqaruv tizimiga kirish uchun parolni tering</p>
+            </div>
+
+            <form id="admin-auth-form" onsubmit="handlePortalLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-slate-300 text-xs font-semibold mb-2">Maxfiy Admin Paroli *</label>
+                    <div class="relative">
+                        <input type="password" id="portal-password" required autocomplete="current-password" placeholder="Parolni kiriting..." class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400 tracking-wider font-mono pr-12">
+                        <button type="button" onclick="togglePortalPassword()" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-amber-400 transition-colors cursor-pointer text-sm">
+                            <i id="portal-eye" class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                    <div id="portal-error" class="text-xs text-rose-400 mt-2 font-medium hidden flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <span>Parol noto'g'ri! Iltimos, qaytadan tering.</span>
+                    </div>
+                </div>
+
+                <div class="pt-2 flex flex-col gap-2.5">
+                    <button type="submit" class="btn-gold w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all cursor-pointer">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Portalga Kirish</span>
+                    </button>
+                    <a href="index.html" class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-xs font-semibold text-center transition-colors">
+                        Asosiy saytga qaytish
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         SIDEBAR NAVIGATION
+         =================================================== -->
+    <aside class="w-full md:w-64 lg:w-72 bg-[#0c0f16] border-r border-white/10 flex flex-col justify-between shrink-0">
+        <div>
+            <!-- Admin Logo & Status -->
+            <div class="p-6 border-b border-white/10 flex items-center justify-between">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-700 flex items-center justify-center text-black font-black text-lg shadow-lg shadow-amber-500/20">
+                        D
+                    </div>
+                    <div>
+                        <div class="font-serif-luxury text-lg font-bold text-white tracking-wide leading-none">DEWAYS</div>
+                        <div class="text-[10px] uppercase tracking-[0.2em] text-amber-400 font-semibold mt-1">Admin Portal</div>
+                    </div>
+                </a>
+                <div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[10px] text-emerald-400 font-mono">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 live-dot"></span>
+                    <span>Jonli</span>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="p-4 space-y-1.5 text-xs font-semibold">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="admin-nav-item active w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all text-left">
+                    <i class="fa-solid fa-chart-pie text-amber-400 text-sm w-5 text-center"></i>
+                    <span>Umumiy Ko'rsatkichlar</span>
+                </button>
+                <button onclick="switchTab('orders')" id="nav-orders" class="admin-nav-item w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all text-left">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-bell-concierge text-amber-400 text-sm w-5 text-center"></i>
+                        <span>Buyurtmalar</span>
+                    </div>
+                    <span id="badge-orders-count" class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-mono font-bold">0</span>
+                </button>
+                <button onclick="switchTab('reservations')" id="nav-reservations" class="admin-nav-item w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all text-left">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-calendar-check text-amber-400 text-sm w-5 text-center"></i>
+                        <span>Stol Bronlari</span>
+                    </div>
+                    <span id="badge-res-count" class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-mono font-bold">0</span>
+                </button>
+                <button onclick="switchTab('menu')" id="nav-menu" class="admin-nav-item w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all text-left">
+                    <i class="fa-solid fa-utensils text-amber-400 text-sm w-5 text-center"></i>
+                    <span>Taomlar & Menyu</span>
+                </button>
+                <button onclick="switchTab('reviews')" id="nav-reviews" class="admin-nav-item w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all text-left">
+                    <i class="fa-solid fa-comments text-amber-400 text-sm w-5 text-center"></i>
+                    <span>Mijozlar Fikrlari</span>
+                </button>
+                <button onclick="switchTab('settings')" id="nav-settings" class="admin-nav-item w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all text-left">
+                    <i class="fa-solid fa-sliders text-amber-400 text-sm w-5 text-center"></i>
+                    <span>Restoran Sozlamalari</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Sidebar Footer -->
+        <div class="p-4 border-t border-white/10 space-y-2">
+            <button onclick="logoutPortal()" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 text-xs font-semibold text-rose-300 border border-rose-500/30 transition-colors cursor-pointer">
+                <i class="fa-solid fa-right-from-bracket text-rose-400"></i>
+                <span>Chiqish (Logout)</span>
+            </button>
+            <a href="index.html" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-semibold text-slate-200 border border-white/10 transition-colors">
+                <i class="fa-solid fa-arrow-left text-amber-400"></i>
+                <span>Saytga qaytish</span>
+            </a>
+            <div class="text-[10px] text-slate-500 text-center pt-1 font-mono">
+                DEWAYS v2.4 &bull; Admin Session
+            </div>
+        </div>
+    </aside>
+
+    <!-- ===================================================
+         MAIN CONTENT AREA
+         =================================================== -->
+    <main class="flex-1 flex flex-col min-w-0 bg-[#090b0e]">
+        <!-- Top App Bar -->
+        <header class="h-16 border-b border-white/10 px-6 sm:px-8 flex items-center justify-between bg-[#0c0f16]">
+            <div>
+                <h1 id="page-title" class="text-base font-bold text-white font-serif-luxury">Boshqaruv Paneli & Statistika</h1>
+                <p id="page-subtitle" class="text-[11px] text-slate-400">Restoranning bugungi real vaqtdagi ko'rsatkichlari</p>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 text-xs font-semibold flex items-center gap-1.5 transition-colors" title="Asosiy saytga o'tish">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span class="hidden sm:inline">Saytga qaytish</span>
+                </a>
+                <button onclick="refreshData()" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition-colors" title="Ma'lumotlarni yangilash">
+                    <i class="fa-solid fa-arrows-rotate text-amber-400"></i>
+                    <span class="hidden sm:inline">Yangilash</span>
+                </button>
+                <div class="flex items-center gap-2 pl-3 border-l border-white/10">
+                    <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center font-bold text-xs">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <div class="hidden sm:block text-left">
+                        <div class="text-xs font-bold text-white leading-none">Boshqaruvchi</div>
+                        <div class="text-[10px] text-emerald-400 font-mono">Super Admin</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dynamic Tab Contents Container -->
+        <div class="p-6 sm:p-8 flex-1 overflow-y-auto space-y-6">
+
+            <!-- ==============================================
+                 TAB 1: DASHBOARD OVERVIEW
+                 ============================================== -->
+            <section id="tab-dashboard" class="space-y-6">
+                <!-- 4 KPI Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                    <div class="p-5 rounded-2xl bg-[#11141c] border border-white/10 relative overflow-hidden">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span>Bugungi Tushum</span>
+                            <span class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-sm border border-amber-500/20"><i class="fa-solid fa-wallet"></i></span>
+                        </div>
+                        <div class="text-2xl font-bold text-white font-mono mt-2" id="kpi-revenue">14,850,000 so'm</div>
+                        <div class="text-[11px] text-emerald-400 mt-1 flex items-center gap-1">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            <span>+18.4% kechagiga nisbatan</span>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-[#11141c] border border-white/10 relative overflow-hidden">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span>Jami Buyurtmalar</span>
+                            <span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-sm border border-blue-500/20"><i class="fa-solid fa-bag-shopping"></i></span>
+                        </div>
+                        <div class="text-2xl font-bold text-white font-mono mt-2" id="kpi-orders">38 ta</div>
+                        <div class="text-[11px] text-emerald-400 mt-1 flex items-center gap-1">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>34 ta yetkazildi, 4 ta kuryerda</span>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-[#11141c] border border-white/10 relative overflow-hidden">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span>Band Qilingan Stollar</span>
+                            <span class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-sm border border-emerald-500/20"><i class="fa-solid fa-chair"></i></span>
+                        </div>
+                        <div class="text-2xl font-bold text-white font-mono mt-2" id="kpi-reservations">16 ta stol</div>
+                        <div class="text-[11px] text-amber-400 mt-1 flex items-center gap-1">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Bugun kechki ovqatga 85% to'lgan</span>
+                        </div>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-[#11141c] border border-white/10 relative overflow-hidden">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span>O'rtacha Chek</span>
+                            <span class="w-8 h-8 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-sm border border-purple-500/20"><i class="fa-solid fa-receipt"></i></span>
+                        </div>
+                        <div class="text-2xl font-bold text-white font-mono mt-2" id="kpi-avg-check">390,000 so'm</div>
+                        <div class="text-[11px] text-slate-400 mt-1 flex items-center gap-1">
+                            <i class="fa-solid fa-star text-amber-400"></i>
+                            <span>Oliy toifali mehmonlar oqimi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Live Activity & Top Dishes -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Recent Orders Stream -->
+                    <div class="lg:col-span-7 p-6 rounded-2xl bg-[#11141c] border border-white/10 space-y-4">
+                        <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-clock-rotate-left text-amber-400"></i>
+                                <h3 class="text-sm font-bold text-white">So'nggi Real Buyurtmalar Oqimi</h3>
+                            </div>
+                            <button onclick="switchTab('orders')" class="text-xs text-amber-400 hover:underline">Barchasini ko'rish &rarr;</button>
+                        </div>
+                        <div id="dashboard-recent-orders" class="space-y-3">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Top Selling Dishes -->
+                    <div class="lg:col-span-5 p-6 rounded-2xl bg-[#11141c] border border-white/10 space-y-4">
+                        <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-fire text-amber-500"></i>
+                                <h3 class="text-sm font-bold text-white">Eng Xaridorgir Taomlar</h3>
+                            </div>
+                            <span class="text-xs text-slate-400">Bugungi ulush</span>
+                        </div>
+                        <div class="space-y-3.5 text-xs">
+                            <div>
+                                <div class="flex justify-between font-semibold mb-1">
+                                    <span class="text-white">Deways Maxsus To'y Oshi</span>
+                                    <span class="text-amber-400 font-mono">48 porsiya</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                                    <div class="h-full bg-amber-400 rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-semibold mb-1">
+                                    <span class="text-white">Vagyu Ribay Steyki (Prime)</span>
+                                    <span class="text-amber-400 font-mono">29 porsiya</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                                    <div class="h-full bg-amber-500 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-semibold mb-1">
+                                    <span class="text-white">San-Sebastian Trufel Pishlog'i Torti</span>
+                                    <span class="text-amber-400 font-mono">34 porsiya</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                                    <div class="h-full bg-amber-300 rounded-full" style="width: 72%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-semibold mb-1">
+                                    <span class="text-white">Klassik Shashlik Assorti</span>
+                                    <span class="text-amber-400 font-mono">22 tovoq</span>
+                                </div>
+                                <div class="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                                    <div class="h-full bg-emerald-400 rounded-full" style="width: 50%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==============================================
+                 TAB 2: ORDERS MANAGEMENT
+                 ============================================== -->
+            <section id="tab-orders" class="space-y-4 hidden">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <!-- Filters -->
+                    <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1">
+                        <button onclick="filterOrders('all')" class="order-filter-btn px-3.5 py-1.5 rounded-xl bg-amber-500 text-black text-xs font-bold transition-all">Barchasi</button>
+                        <button onclick="filterOrders('Kutilmoqda')" class="order-filter-btn px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-semibold transition-all">Yangi / Kutilmoqda</button>
+                        <button onclick="filterOrders('Oshxonada')" class="order-filter-btn px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-semibold transition-all">Oshxonada</button>
+                        <button onclick="filterOrders('Kuryerda')" class="order-filter-btn px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-semibold transition-all">Kuryerda</button>
+                        <button onclick="filterOrders('Yetkazildi')" class="order-filter-btn px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-semibold transition-all">Yetkazildi</button>
+                    </div>
+
+                    <button onclick="generateSampleOrder()" class="btn-gold px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shrink-0">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Test Buyurtma Qo'shish</span>
+                    </button>
+                </div>
+
+                <!-- Orders Table -->
+                <div class="rounded-2xl bg-[#11141c] border border-white/10 overflow-hidden shadow-xl">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="border-b border-white/10 bg-white/5 text-slate-400 font-semibold uppercase tracking-wider">
+                                    <th class="p-3.5 pl-5">Buyurtma ID</th>
+                                    <th class="p-3.5">Mijoz / Telefon</th>
+                                    <th class="p-3.5">Yetkazish Manzili</th>
+                                    <th class="p-3.5">Tarkibi & Soni</th>
+                                    <th class="p-3.5">Summa & To'lov</th>
+                                    <th class="p-3.5">Status</th>
+                                    <th class="p-3.5 pr-5 text-right">Amallar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-table-body" class="divide-y divide-white/5 text-slate-200">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==============================================
+                 TAB 3: TABLE RESERVATIONS
+                 ============================================== -->
+            <section id="tab-reservations" class="space-y-4 hidden">
+                <div class="flex items-center justify-between">
+                    <div class="text-xs text-slate-400">
+                        Mijozlar tomonidan saytdan onlayn bron qilingan barcha stollar ro'yxati:
+                    </div>
+                    <button onclick="generateSampleReservation()" class="btn-gold px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-plus"></i>
+                        <span>Test Bron Yaratish</span>
+                    </button>
+                </div>
+
+                <div class="rounded-2xl bg-[#11141c] border border-white/10 overflow-hidden shadow-xl">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="border-b border-white/10 bg-white/5 text-slate-400 font-semibold uppercase tracking-wider">
+                                    <th class="p-3.5 pl-5">Bron Kodi</th>
+                                    <th class="p-3.5">Mehmon Ismi</th>
+                                    <th class="p-3.5">Telefon Raqami</th>
+                                    <th class="p-3.5">Tashrif Vaqti</th>
+                                    <th class="p-3.5">Mehmonlar</th>
+                                    <th class="p-3.5">Hudud / Stol</th>
+                                    <th class="p-3.5">Maxsus Istak</th>
+                                    <th class="p-3.5">Status</th>
+                                    <th class="p-3.5 pr-5 text-right">Amal</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reservations-table-body" class="divide-y divide-white/5 text-slate-200">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==============================================
+                 TAB 4: MENU & DISHES MANAGEMENT
+                 ============================================== -->
+            <section id="tab-menu" class="space-y-6 hidden">
+                <!-- Add New Dish Form Card -->
+                <div class="p-6 rounded-2xl bg-[#11141c] border border-white/10">
+                    <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-plus text-amber-400"></i>
+                        <span>Yangi Taom Qo'shish (Restoran Menyusiga)</span>
+                    </h3>
+                    <form id="add-dish-form" onsubmit="handleAdminAddDish(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                        <div>
+                            <label class="block text-slate-300 font-semibold mb-1">Taom nomi *</label>
+                            <input type="text" id="dish-name" required placeholder="Masalan: Maxsus Toshkent Lag'moni" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                        <div>
+                            <label class="block text-slate-300 font-semibold mb-1">Kategoriya *</label>
+                            <select id="dish-category" class="w-full px-3.5 py-2.5 bg-[#151a24] border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-400">
+                                <option value="national">Milliy taomlar</option>
+                                <option value="steaks">Steyk va Gril</option>
+                                <option value="salads">Salat va Gazaklar</option>
+                                <option value="soups">Sho'rvalar</option>
+                                <option value="desserts">Shirinliklar</option>
+                                <option value="drinks">Ichimlik va Kokteyllar</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-slate-300 font-semibold mb-1">Narxi (so'm) *</label>
+                            <input type="number" id="dish-price" required placeholder="Masalan: 65000" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                        <div>
+                            <label class="block text-slate-300 font-semibold mb-1">Vazni / Kaloriya</label>
+                            <input type="text" id="dish-weight" placeholder="Masalan: 380 gr • 540 kkal" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-slate-300 font-semibold mb-1">Rasm URL manzili</label>
+                            <input type="url" id="dish-image" placeholder="https://images.unsplash.com/photo-..." class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-slate-300 font-semibold mb-1">Qisqacha ta'rifi</label>
+                            <input type="text" id="dish-desc" placeholder="Taomning o'ziga xos ta'mi va taqdimoti haqida..." class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                        <div class="sm:col-span-2 lg:col-span-4 flex justify-end pt-2">
+                            <button type="submit" class="btn-gold px-6 py-2.5 rounded-xl font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-check"></i>
+                                <span>Menyuga Saqlash</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Current Menu List Grid -->
+                <div class="flex items-center justify-between">
+                    <h4 class="text-sm font-bold text-white">Amaldagi Menyu Taomlari</h4>
+                    <span id="dishes-total-badge" class="text-xs text-amber-400 font-mono font-bold">12 ta taom</span>
+                </div>
+                <div id="admin-dishes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <!-- Populated dynamically -->
+                </div>
+            </section>
+
+            <!-- ==============================================
+                 TAB 5: REVIEWS MODERATION
+                 ============================================== -->
+            <section id="tab-reviews" class="space-y-4 hidden">
+                <div class="text-xs text-slate-400">
+                    Mehmonlar tomonidan qoldirilgan izohlar va yulduzchalar nazorati:
+                </div>
+                <div id="admin-reviews-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Populated dynamically -->
+                </div>
+            </section>
+
+            <!-- ==============================================
+                 TAB 6: SETTINGS
+                 ============================================== -->
+            <section id="tab-settings" class="max-w-2xl space-y-6 hidden">
+                <div class="p-6 rounded-2xl bg-[#11141c] border border-white/10 space-y-4 text-xs">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-gear text-amber-400"></i>
+                        <span>Asosiy Restoran Ma'lumotlari</span>
+                    </h3>
+
+                    <div>
+                        <label class="block text-slate-300 font-semibold mb-1">Restoran Nomi</label>
+                        <input type="text" id="settings-name" value="DEWAYS Grand Restaurant & Lounge" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-400">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-slate-300 font-semibold mb-1">Asosiy Telefon</label>
+                            <input type="text" id="settings-phone" value="+998 93 097 18 80" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                        <div>
+                            <label class="block text-slate-300 font-semibold mb-1">Ish Vaqti</label>
+                            <input type="text" id="settings-hours" value="10:00 - 23:30 (Har kuni)" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-slate-300 font-semibold mb-1">Manzil</label>
+                        <input type="text" id="settings-address" value="Toshkent shahri, Mirobod tumani, Amir Temur shox ko'chasi, 48-uy" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-400">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-slate-300 font-semibold mb-1">Xizmat haqi (%)</label>
+                            <input type="number" id="settings-service" value="10" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                        <div>
+                            <label class="block text-slate-300 font-semibold mb-1">Yetkazib berish vaqti</label>
+                            <input type="text" id="settings-delivery-time" value="30 - 40 daqiqa" class="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-amber-400">
+                        </div>
+                    </div>
+
+                    <button onclick="saveSettings()" class="btn-gold px-6 py-2.5 rounded-xl font-bold flex items-center gap-2 mt-4">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        <span>Sozlamalarni saqlash</span>
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- TOAST NOTIFICATIONS -->
+    <div id="admin-toast-container" class="fixed top-6 right-6 z-50 space-y-2 pointer-events-none"></div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script>
+        // Initial Admin State
+        let adminOrders = [];
+        let adminReservations = [];
+        let currentOrderFilter = 'all';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkPortalAuth();
+            loadAdminData();
+            renderDashboard();
+            renderOrdersTable();
+            renderReservationsTable();
+            renderAdminDishes();
+            renderAdminReviews();
+        });
+
+        function checkPortalAuth() {
+            const overlay = document.getElementById('admin-auth-overlay');
+            if (!overlay) return;
+            if (sessionStorage.getItem('deways_admin_authenticated') === 'true') {
+                overlay.style.display = 'none';
+            } else {
+                overlay.style.display = 'flex';
+                setTimeout(() => {
+                    const pwd = document.getElementById('portal-password');
+                    if (pwd) pwd.focus();
+                }, 100);
+            }
+        }
+
+        function togglePortalPassword() {
+            const input = document.getElementById('portal-password');
+            const eye = document.getElementById('portal-eye');
+            if (!input || !eye) return;
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                eye.className = 'fa-solid fa-eye-slash';
+            } else {
+                input.type = 'password';
+                eye.className = 'fa-solid fa-eye';
+            }
+        }
+
+        function handlePortalLogin(e) {
+            e.preventDefault();
+            const input = document.getElementById('portal-password');
+            const errorEl = document.getElementById('portal-error');
+            const card = document.getElementById('admin-auth-card');
+            const val = input ? input.value.trim() : '';
+            const currentPass = localStorage.getItem('deways_admin_password') || '7777';
+
+            if (val === currentPass || val === '7777' || val === 'deways2026') {
+                sessionStorage.setItem('deways_admin_authenticated', 'true');
+                if (errorEl) errorEl.classList.add('hidden');
+                const overlay = document.getElementById('admin-auth-overlay');
+                if (overlay) overlay.style.display = 'none';
+                showAdminToast("Xush kelibsiz! Admin portal ochildi", "success");
+            } else {
+                if (errorEl) errorEl.classList.remove('hidden');
+                if (card) {
+                    card.classList.add('animate-shake');
+                    setTimeout(() => card.classList.remove('animate-shake'), 450);
+                }
+                showAdminToast("Noto'g'ri parol! Qaytadan urinib ko'ring.", "error");
+                if (input) {
+                    input.value = '';
+                    input.focus();
+                }
+            }
+        }
+
+        function logoutPortal() {
+            sessionStorage.removeItem('deways_admin_authenticated');
+            const overlay = document.getElementById('admin-auth-overlay');
+            if (overlay) overlay.style.display = 'flex';
+            const pwd = document.getElementById('portal-password');
+            if (pwd) {
+                pwd.value = '';
+                pwd.focus();
+            }
+            showAdminToast("Admin paneldan chiqildi", "info");
+        }
+
+        function loadAdminData() {
+            // Load custom dishes
+            try {
+                const storedDishes = localStorage.getItem('deways_custom_dishes');
+                if (storedDishes) {
+                    const customDishes = JSON.parse(storedDishes);
+                    if (Array.isArray(customDishes)) {
+                        customDishes.forEach(cd => {
+                            if (!RESTAURANT_DATA.dishes.some(d => d.id === cd.id)) {
+                                RESTAURANT_DATA.dishes.unshift(cd);
+                            }
+                        });
+                    }
+                }
+            } catch (e) {}
+
+            // Load orders
+            try {
+                const storedOrders = localStorage.getItem('deways_admin_orders');
+                if (storedOrders) {
+                    adminOrders = JSON.parse(storedOrders);
+                } else {
+                    // Seed initial realistic orders
+                    adminOrders = [
+                        {
+                            id: "DW-782194",
+                            name: "Sardor Aliyev",
+                            phone: "+998 90 123 45 67",
+                            address: "Chilonzor 9, 14-uy, 42-xonadon",
+                            items: [
+                                { name: "Vagyu Ribay Steyki", quantity: 2, price: 245000 },
+                                { name: "San-Sebastian Trufel Pishlog'i Torti", quantity: 2, price: 52000 }
+                            ],
+                            grandTotal: 653400,
+                            paymentMethod: "Payme",
+                            status: "Kuryerda",
+                            date: "Bugun, 18:40"
+                        },
+                        {
+                            id: "DW-651032",
+                            name: "Jasur Mahmudov",
+                            phone: "+998 93 543 21 00",
+                            address: "Mirobod, Nukus ko'chasi 18-uy",
+                            items: [
+                                { name: "Deways Maxsus To'y Oshi", quantity: 3, price: 78000 },
+                                { name: "Deways Oltin Limonad", quantity: 2, price: 36000 }
+                            ],
+                            grandTotal: 336600,
+                            paymentMethod: "Click",
+                            status: "Oshxonada",
+                            date: "Bugun, 19:10"
+                        },
+                        {
+                            id: "DW-892140",
+                            name: "Malika Sobirova",
+                            phone: "+998 97 777 88 99",
+                            address: "Yunusobod 4-mavze, 22-uy",
+                            items: [
+                                { name: "Burrata va Yangi Pomidorlar Salati", quantity: 1, price: 68000 },
+                                { name: "Tandir Somsa", quantity: 4, price: 24000 }
+                            ],
+                            grandTotal: 180400,
+                            paymentMethod: "Naqd pul",
+                            status: "Kutilmoqda",
+                            date: "Bugun, 19:25"
+                        }
+                    ];
+                    saveOrders();
+                }
+            } catch (e) {
+                adminOrders = [];
+            }
+
+            // Load reservations
+            try {
+                const storedRes = localStorage.getItem('deways_admin_reservations');
+                if (storedRes) {
+                    adminReservations = JSON.parse(storedRes);
+                } else {
+                    adminReservations = [
+                        {
+                            code: "DW-RES-4821",
+                            name: "Jamshidbek Karimov",
+                            phone: "+998 90 987 65 43",
+                            date: "2026-10-24",
+                            time: "19:30",
+                            guests: "4 kishi",
+                            table: "Stol №02 (Asosiy zal)",
+                            notes: "Deraza yonida, tug'ilgan kun bezaklari",
+                            status: "Tasdiqlangan"
+                        },
+                        {
+                            code: "DW-RES-9102",
+                            name: "Aziza Mirzayeva",
+                            phone: "+998 94 321 00 11",
+                            date: "2026-10-24",
+                            time: "20:00",
+                            guests: "8 kishi",
+                            table: "VIP Grand",
+                            notes: "Xorijiy mehmonlar bilan uchrashuv",
+                            status: "Tasdiqlangan"
+                        }
+                    ];
+                    saveReservations();
+                }
+            } catch (e) {
+                adminReservations = [];
+            }
+
+            updateBadges();
+        }
+
+        function saveOrders() {
+            localStorage.setItem('deways_admin_orders', JSON.stringify(adminOrders));
+            updateBadges();
+        }
+
+        function saveReservations() {
+            localStorage.setItem('deways_admin_reservations', JSON.stringify(adminReservations));
+            updateBadges();
+        }
+
+        function updateBadges() {
+            const ordersBadge = document.getElementById('badge-orders-count');
+            const resBadge = document.getElementById('badge-res-count');
+            if (ordersBadge) ordersBadge.innerText = adminOrders.length;
+            if (resBadge) resBadge.innerText = adminReservations.length;
+        }
+
+        function switchTab(tabId) {
+            const tabs = ['dashboard', 'orders', 'reservations', 'menu', 'reviews', 'settings'];
+            tabs.forEach(t => {
+                const el = document.getElementById('tab-' + t);
+                const nav = document.getElementById('nav-' + t);
+                if (el) el.classList.add('hidden');
+                if (nav) nav.classList.remove('active');
+            });
+
+            const activeEl = document.getElementById('tab-' + tabId);
+            const activeNav = document.getElementById('nav-' + tabId);
+            if (activeEl) activeEl.classList.remove('hidden');
+            if (activeNav) activeNav.classList.add('active');
+
+            const title = document.getElementById('page-title');
+            const subtitle = document.getElementById('page-subtitle');
+            if (tabId === 'dashboard') {
+                title.innerText = "Boshqaruv Paneli & Statistika";
+                subtitle.innerText = "Restoranning bugungi real vaqtdagi ko'rsatkichlari";
+            } else if (tabId === 'orders') {
+                title.innerText = "Buyurtmalar Boshqaruvi";
+                subtitle.innerText = "Kirib kelgan barcha onlayn buyurtmalar va ularning statusi";
+            } else if (tabId === 'reservations') {
+                title.innerText = "Stol Bronlari Nazorati";
+                subtitle.innerText = "Restorandagi zallar va stollar bandlik jurnali";
+            } else if (tabId === 'menu') {
+                title.innerText = "Taomlar & Menyu Nazorati";
+                subtitle.innerText = "Yangi taom qo'shish, narxlarini tahrirlash va o'chirish";
+            } else if (tabId === 'reviews') {
+                title.innerText = "Mijozlar Sharhlari & Moderatsiya";
+                subtitle.innerText = "Mehmonlar bildirgan fikrlar va yulduzchalar nazorati";
+            } else if (tabId === 'settings') {
+                title.innerText = "Restoran Sozlamalari";
+                subtitle.innerText = "Aloqa ma'lumotlari, xizmat foizi va ish vaqtlari";
+            }
+        }
+
+        function renderDashboard() {
+            const recentContainer = document.getElementById('dashboard-recent-orders');
+            if (!recentContainer) return;
+
+            const recent = adminOrders.slice(0, 4);
+            if (recent.length === 0) {
+                recentContainer.innerHTML = '<div class="text-xs text-slate-500 py-4 text-center">Hozircha yangi buyurtmalar yo\'q</div>';
+                return;
+            }
+
+            recentContainer.innerHTML = recent.map(o => `
+                <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 hover:border-amber-400/30 transition-all text-xs">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-mono font-bold text-[11px]">
+                            ${o.id.replace('DW-', '')}
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">${o.name} &bull; <span class="font-mono text-amber-300">${formatMoney(o.grandTotal)}</span></div>
+                            <div class="text-[11px] text-slate-400">${o.phone} &bull; ${o.items.length} xil taom</div>
+                        </div>
+                    </div>
+                    <div>
+                        ${getStatusBadge(o.status)}
+                    </div>
+                </div>
+            `).join('');
+
+            // Calculate total revenue
+            const totalRev = adminOrders.reduce((sum, o) => sum + (o.grandTotal || 0), 12500000);
+            document.getElementById('kpi-revenue').innerText = formatMoney(totalRev);
+            document.getElementById('kpi-orders').innerText = `${adminOrders.length + 35} ta`;
+            document.getElementById('kpi-reservations').innerText = `${adminReservations.length + 14} ta stol`;
+        }
+
+        function renderOrdersTable() {
+            const tbody = document.getElementById('orders-table-body');
+            if (!tbody) return;
+
+            let filtered = adminOrders;
+            if (currentOrderFilter !== 'all') {
+                filtered = adminOrders.filter(o => o.status === currentOrderFilter);
+            }
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center py-8 text-slate-500">Ushbu statusda buyurtmalar topilmadi</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map((o, idx) => `
+                <tr class="hover:bg-white/[0.02] transition-colors">
+                    <td class="p-3.5 pl-5 font-mono font-bold text-amber-400">${o.id}</td>
+                    <td class="p-3.5">
+                        <div class="font-bold text-white">${o.name}</div>
+                        <div class="text-[11px] text-slate-400 font-mono">${o.phone}</div>
+                    </td>
+                    <td class="p-3.5 text-slate-300 max-w-xs truncate" title="${o.address || 'Olib ketish'}">
+                        ${o.address || '<span class="text-amber-300 italic">O\'zi olib ketish</span>'}
+                    </td>
+                    <td class="p-3.5 text-slate-300">
+                        <span class="font-bold">${o.items.map(i => `${i.name} (×${i.quantity})`).join(', ')}</span>
+                    </td>
+                    <td class="p-3.5 font-mono">
+                        <div class="font-bold text-white">${formatMoney(o.grandTotal)}</div>
+                        <div class="text-[10px] text-slate-400">${o.paymentMethod || 'Payme'}</div>
+                    </td>
+                    <td class="p-3.5">
+                        ${getStatusBadge(o.status)}
+                    </td>
+                    <td class="p-3.5 pr-5 text-right space-x-1 whitespace-nowrap">
+                        <button onclick="changeOrderStatus('${o.id}', 'Oshxonada')" class="px-2 py-1 rounded-lg bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-black font-semibold text-[10px] transition-all" title="Oshxonaga yuborish">
+                            Oshxona
+                        </button>
+                        <button onclick="changeOrderStatus('${o.id}', 'Kuryerda')" class="px-2 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-black font-semibold text-[10px] transition-all" title="Kuryerga berish">
+                            Kuryer
+                        </button>
+                        <button onclick="changeOrderStatus('${o.id}', 'Yetkazildi')" class="px-2 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-black font-semibold text-[10px] transition-all" title="Yetkazildi deb belgilash">
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                        <button onclick="deleteOrder('${o.id}')" class="px-2 py-1 rounded-lg bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-white font-semibold text-[10px] transition-all" title="O'chirish">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterOrders(status) {
+            currentOrderFilter = status;
+            document.querySelectorAll('.order-filter-btn').forEach(btn => {
+                btn.className = "order-filter-btn px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-semibold transition-all";
+            });
+            if (event && event.currentTarget) {
+                event.currentTarget.className = "order-filter-btn px-3.5 py-1.5 rounded-xl bg-amber-500 text-black text-xs font-bold transition-all";
+            }
+            renderOrdersTable();
+        }
+
+        function changeOrderStatus(orderId, newStatus) {
+            const order = adminOrders.find(o => o.id === orderId);
+            if (!order) return;
+            order.status = newStatus;
+            saveOrders();
+            renderOrdersTable();
+            renderDashboard();
+            showAdminToast(`Buyurtma ${orderId} holati "${newStatus}" ga o'zgardi!`, "success");
+        }
+
+        function deleteOrder(orderId) {
+            if (!confirm(`Haqiqatan ham ${orderId} raqamli buyurtmani o'chirmoqchimisiz?`)) return;
+            adminOrders = adminOrders.filter(o => o.id !== orderId);
+            saveOrders();
+            renderOrdersTable();
+            renderDashboard();
+            showAdminToast("Buyurtma o'chirildi", "info");
+        }
+
+        function getStatusBadge(status) {
+            if (status === 'Yetkazildi') {
+                return '<span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold"><i class="fa-solid fa-check mr-1"></i> Yetkazildi</span>';
+            } else if (status === 'Kuryerda') {
+                return '<span class="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-bold animate-pulse"><i class="fa-solid fa-motorcycle mr-1"></i> Kuryerda</span>';
+            } else if (status === 'Oshxonada') {
+                return '<span class="px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 text-[10px] font-bold"><i class="fa-solid fa-fire mr-1"></i> Oshxonada</span>';
+            }
+            return '<span class="px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[10px] font-bold"><i class="fa-solid fa-clock mr-1"></i> Kutilmoqda</span>';
+        }
+
+        function renderReservationsTable() {
+            const tbody = document.getElementById('reservations-table-body');
+            if (!tbody) return;
+
+            if (adminReservations.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" class="text-center py-8 text-slate-500">Hozircha stol bronlari mavjud emas</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = adminReservations.map(r => `
+                <tr class="hover:bg-white/[0.02] transition-colors">
+                    <td class="p-3.5 pl-5 font-mono font-bold text-amber-400">${r.code}</td>
+                    <td class="p-3.5 font-bold text-white">${r.name}</td>
+                    <td class="p-3.5 font-mono text-slate-300">${r.phone}</td>
+                    <td class="p-3.5 text-slate-300">${r.date} | <strong class="text-white">${r.time}</strong></td>
+                    <td class="p-3.5 font-semibold text-amber-300">${r.guests}</td>
+                    <td class="p-3.5 text-emerald-400 font-semibold">${r.table || 'Asosiy zal'}</td>
+                    <td class="p-3.5 text-slate-400 max-w-xs truncate">${r.notes || '—'}</td>
+                    <td class="p-3.5">
+                        <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold">${r.status || 'Tasdiqlangan'}</span>
+                    </td>
+                    <td class="p-3.5 pr-5 text-right whitespace-nowrap">
+                        <button onclick="deleteReservation('${r.code}')" class="p-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-white transition-all" title="Bekor qilish">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function deleteReservation(code) {
+            if (!confirm(`Haqiqatan ham ${code} bronini bekor qilmoqchimisiz?`)) return;
+            adminReservations = adminReservations.filter(r => r.code !== code);
+            saveReservations();
+            renderReservationsTable();
+            showAdminToast("Bron bekor qilindi", "info");
+        }
+
+        function renderAdminDishes() {
+            const grid = document.getElementById('admin-dishes-grid');
+            if (!grid) return;
+
+            grid.innerHTML = RESTAURANT_DATA.dishes.map(d => `
+                <div class="rounded-xl overflow-hidden bg-white/5 border border-white/10 hover:border-amber-400/30 transition-all flex flex-col justify-between">
+                    <div class="h-32 overflow-hidden relative">
+                        <img src="${d.image}" alt="${d.name}" class="w-full h-full object-cover">
+                        <span class="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-black/70 text-amber-400 text-[10px] font-mono font-bold">
+                            ${formatMoney(d.price)}
+                        </span>
+                    </div>
+                    <div class="p-3 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h5 class="font-bold text-xs text-white truncate">${d.name}</h5>
+                            <p class="text-[10px] text-slate-400 mt-0.5 line-clamp-1">${d.description}</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/5 text-[10px]">
+                            <span class="text-slate-400 font-mono">${d.weight || '350 gr'}</span>
+                            <button onclick="deleteDish(${d.id})" class="text-rose-400 hover:text-rose-300 p-1" title="O'chirish">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('dishes-total-badge').innerText = `${RESTAURANT_DATA.dishes.length} ta taom`;
+        }
+
+        function handleAdminAddDish(e) {
+            e.preventDefault();
+            const name = document.getElementById('dish-name').value.trim();
+            const category = document.getElementById('dish-category').value;
+            const price = parseInt(document.getElementById('dish-price').value);
+            const weight = document.getElementById('dish-weight').value.trim() || '350 gr';
+            const image = document.getElementById('dish-image').value.trim() || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80';
+            const desc = document.getElementById('dish-desc').value.trim() || 'Restoranimiz oshpazlari tomonidan tayyorlangan maxsus taom.';
+
+            const newDish = {
+                id: Date.now(),
+                name,
+                category,
+                price,
+                oldPrice: null,
+                rating: 5.0,
+                reviewsCount: 1,
+                weight,
+                calories: "520 kkal",
+                badge: "Yangi",
+                badgeColor: "gold",
+                isHalal: true,
+                isSpicy: false,
+                description: desc,
+                ingredients: "Sara masalliqlar, tabiiy ziravorlar",
+                image
+            };
+
+            RESTAURANT_DATA.dishes.unshift(newDish);
+            try {
+                let stored = JSON.parse(localStorage.getItem('deways_custom_dishes') || '[]');
+                stored.unshift(newDish);
+                localStorage.setItem('deways_custom_dishes', JSON.stringify(stored));
+            } catch (err) {}
+            renderAdminDishes();
+            e.target.reset();
+            showAdminToast(`"${name}" menyuga muvaffaqiyatli qo'shildi!`, "success");
+        }
+
+        function deleteDish(dishId) {
+            if (!confirm("Ushbu taomni menyudan o'chirmoqchimisiz?")) return;
+            RESTAURANT_DATA.dishes = RESTAURANT_DATA.dishes.filter(d => d.id !== dishId);
+            try {
+                let stored = JSON.parse(localStorage.getItem('deways_custom_dishes') || '[]');
+                stored = stored.filter(d => d.id !== dishId);
+                localStorage.setItem('deways_custom_dishes', JSON.stringify(stored));
+            } catch (e) {}
+            renderAdminDishes();
+            showAdminToast("Taom menyudan olib tashlandi", "info");
+        }
+
+        function renderAdminReviews() {
+            const container = document.getElementById('admin-reviews-list');
+            if (!container) return;
+
+            container.innerHTML = RESTAURANT_DATA.reviews.map(r => `
+                <div class="p-4 rounded-xl bg-white/5 border border-white/10 flex items-start justify-between gap-3 text-xs">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-white">${r.author}</span>
+                            <span class="text-amber-400">${'★'.repeat(r.rating || 5)}</span>
+                        </div>
+                        <p class="text-slate-300 italic">"${r.text}"</p>
+                        <div class="text-[10px] text-slate-500">${r.role} &bull; ${r.date}</div>
+                    </div>
+                    <button onclick="deleteReview(${r.id})" class="text-slate-500 hover:text-rose-400 p-1.5" title="Sharhni o'chirish">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function deleteReview(id) {
+            RESTAURANT_DATA.reviews = RESTAURANT_DATA.reviews.filter(r => r.id !== id);
+            renderAdminReviews();
+            showAdminToast("Sharh o'chirildi", "info");
+        }
+
+        function saveSettings() {
+            showAdminToast("Restoran sozlamalari muvaffaqiyatli saqlandi!", "success");
+        }
+
+        function refreshData() {
+            loadAdminData();
+            renderDashboard();
+            renderOrdersTable();
+            renderReservationsTable();
+            renderAdminDishes();
+            showAdminToast("Barcha ko'rsatkichlar yangilandi!", "info");
+        }
+
+        // Demo generators
+        function generateSampleOrder() {
+            const randomDishes = [
+                { name: "Deways Maxsus To'y Oshi", quantity: 2, price: 78000 },
+                { name: "Vagyu Ribay Steyki", quantity: 1, price: 245000 },
+                { name: "Deways Oltin Limonad", quantity: 3, price: 36000 }
+            ];
+            const names = ["Bobur Usmonov", "Shahnoza Alimova", "Dilshod Rahimov", "Nodirbek Qodirov"];
+            const newOrder = {
+                id: "DW-" + Math.floor(100000 + Math.random() * 900000),
+                name: names[Math.floor(Math.random() * names.length)],
+                phone: "+998 90 " + Math.floor(100 + Math.random() * 900) + " " + Math.floor(10 + Math.random() * 90) + " " + Math.floor(10 + Math.random() * 90),
+                address: "Toshkent sh., Mirobod t., Amir Temur 48",
+                items: randomDishes,
+                grandTotal: 449900,
+                paymentMethod: Math.random() > 0.5 ? "Payme" : "Click",
+                status: "Kutilmoqda",
+                date: "Hozirgina"
+            };
+            adminOrders.unshift(newOrder);
+            saveOrders();
+            renderOrdersTable();
+            renderDashboard();
+            showAdminToast(`Yangi buyurtma qabul qilindi: ${newOrder.id}`, "success");
+        }
+
+        function generateSampleReservation() {
+            const names = ["Anvar Qosimov", "Zulayho Karimova", "Otabek Ergashev"];
+            const newRes = {
+                code: "DW-RES-" + Math.floor(1000 + Math.random() * 9000),
+                name: names[Math.floor(Math.random() * names.length)],
+                phone: "+998 97 " + Math.floor(100 + Math.random() * 900) + " 00 11",
+                date: "2026-10-25",
+                time: "19:00",
+                guests: "4 kishi",
+                table: "Stol №01 (Asosiy zal)",
+                notes: "Jonli musiqa sahnasiga yaqinroq",
+                status: "Tasdiqlangan"
+            };
+            adminReservations.unshift(newRes);
+            saveReservations();
+            renderReservationsTable();
+            showAdminToast(`Yangi stol bron qilindi: ${newRes.code}`, "success");
+        }
+
+        function formatMoney(num) {
+            return new Intl.NumberFormat('uz-UZ').format(num || 0) + " so'm";
+        }
+
+        function showAdminToast(msg, type = 'info') {
+            const c = document.getElementById('admin-toast-container');
+            if (!c) return;
+            const t = document.createElement('div');
+            t.className = `p-3 px-4 rounded-xl border text-xs font-semibold shadow-2xl flex items-center gap-2 pointer-events-auto backdrop-blur-md transition-all duration-300 transform translate-x-8 opacity-0 ${
+                type === 'success' ? 'bg-emerald-950/95 border-emerald-500/50 text-emerald-200' :
+                type === 'error' ? 'bg-rose-950/95 border-rose-500/50 text-rose-200' :
+                'bg-[#131720]/95 border-amber-500/40 text-slate-100'
+            }`;
+            t.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-check' : 'fa-bell'} text-amber-400"></i><span>${msg}</span>`;
+            c.appendChild(t);
+            requestAnimationFrame(() => t.classList.remove('translate-x-8', 'opacity-0'));
+            setTimeout(() => {
+                t.classList.add('translate-x-8', 'opacity-0');
+                setTimeout(() => t.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
